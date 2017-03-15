@@ -4,12 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using UsitColours.Data.Contracts;
 using UsitColours.Models;
+using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
 using UsitColours.Services.Utils;
 
 namespace UsitColours.Services
 {
-    public class JobService
+    public class JobService : IJobService
     {
         private readonly IUsitData usitData;
         private readonly IJobFactory jobFactory;

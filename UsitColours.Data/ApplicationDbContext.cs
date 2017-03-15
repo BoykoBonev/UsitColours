@@ -8,11 +8,11 @@ namespace UsitColours.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("TelerikColoursDatabase", throwIfV1Schema: false)
         {
         }
 
-        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        // public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public virtual DbSet<Airport> Airports { get; set; }
 

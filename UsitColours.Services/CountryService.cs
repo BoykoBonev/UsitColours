@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UsitColours.Data.Contracts;
 using UsitColours.Models;
+using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
 
 namespace UsitColours.Services
 {
-    public class CountryService
+    public class CountryService : ICountryService
     {
         private readonly IUsitData usitData;
         private readonly ILocationFactory locationFactory;
@@ -39,6 +40,13 @@ namespace UsitColours.Services
         public IEnumerable<Country> GetAllCountries()
         {
             return this.usitData.Countries.All.ToList();
+        }
+
+        public void AddCountry(Country country)
+        {
+            this.usitData.Countries.Add(country);
+
+            this.usitData.SaveChanges();
         }
     }
 }

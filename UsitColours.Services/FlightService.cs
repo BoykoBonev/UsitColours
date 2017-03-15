@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using UsitColours.Data.Contracts;
 using UsitColours.Models;
+using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
 using UsitColours.Services.DataStructures;
 using UsitColours.Services.Models;
@@ -11,7 +12,7 @@ using UsitColours.Services.Utils;
 
 namespace UsitColours.Services
 {
-    public class FlightService
+    public class FlightService : IFlightService
     {
 
         private readonly IMappedClassFactory mappedFlightFactory;

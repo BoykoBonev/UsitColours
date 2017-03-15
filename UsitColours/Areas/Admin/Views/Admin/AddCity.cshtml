@@ -1,0 +1,33 @@
+﻿@model  UsitColours.Areas.Admin.Models.AddCityViewModel
+
+@{
+    ViewBag.Title = "AddCity";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AddCity</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Add country</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-control">
+
+            @Html.LabelFor(m => m.Name, "Name");
+            @Html.EditorFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="form-control">
+
+            @Html.DropDownListFor(m => m.CountryId, @Model.Countries);
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="AddCity" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

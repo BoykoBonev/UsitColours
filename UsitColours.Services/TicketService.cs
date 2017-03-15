@@ -4,10 +4,11 @@ using UsitColours.Models;
 using UsitColours.Data.Contracts;
 using System.Data.Entity;
 using System.Collections.Generic;
+using UsitColours.Services.Contracts;
 
 namespace UsitColours.Services
 {
-    public class TicketService
+    public class TicketService : ITicketService
     {
         private readonly IUsitData usitData;
 

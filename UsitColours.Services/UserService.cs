@@ -6,10 +6,11 @@ using UsitColours.Services.Contracts.Factories;
 using UsitColours.Services.Models;
 using UsitColours.Services.Utils;
 using UsitColours.Data.Contracts;
+using UsitColours.Services.Contracts;
 
 namespace UsitColours.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUsitData usitData;
         private readonly IAirportFactory airportFactory;

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UsitColours.Data.Contracts;
 using UsitColours.Models;
+using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
 
 namespace UsitColours.Services
 {
-    public class AirlineService
+    public class AirlineService : IAirlineService
     {
         private readonly IAirlineFactory airlineFactory;
         private IUsitData usitData;

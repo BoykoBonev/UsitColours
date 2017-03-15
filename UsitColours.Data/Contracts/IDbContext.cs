@@ -6,7 +6,7 @@ namespace UsitColours.Data.Contracts
 {
     public interface IDbContext
     {
-        DbSet<ApplicationUser> ApplicationUsers { get; set; }
+     //   DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         DbSet<Airline> Airlines { get; set; }
 

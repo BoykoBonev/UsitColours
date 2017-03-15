@@ -10,7 +10,13 @@ namespace UsitColours.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-
+    using Services.Contracts;
+    using Services;
+    using Services.Contracts.Factories;
+    using Ninject.Extensions.Factory;
+    using Data.Contracts;
+    using Data;
+    using AutoMapper;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +67,13 @@ namespace UsitColours.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IDbContext>().To<ApplicationDbContext>().InRequestScope();
+            kernel.Bind<ILocationFactory>().ToFactory().InRequestScope();
+            kernel.Bind<IUsitData>().To<UsitData>().InRequestScope();
+            kernel.Bind<ICityService>().To<CityService>().InRequestScope();
+            kernel.Bind<IMappingService>().To<MappingService>().InRequestScope();
+            kernel.Bind<ICountryService>().To<CountryService>().InRequestScope();
+
         }        
     }
 }

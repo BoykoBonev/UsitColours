@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/admin/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="page-content">
+            <div class="row" style="padding-top:20px;">
+                <div class="col-md-2">
+                    <div class="sidebar content-box" style="display: block;">
+                        <ul class="nav">
+                            <li><a href="AddCity.aspx"><i class="glyphicon glyphicon-plus"></i> Add city</a></li>
+                            <li><a href="AddCountry.aspx"><i class="glyphicon glyphicon-plus"></i> Add country</a></li>
+                            <li><a href="AddAirport.aspx"><i class="glyphicon glyphicon-plus"></i> Add airport</a></li>
+                            <li><a href="AddAirline.aspx"><i class="glyphicon glyphicon-plus"></i> Add airline</a></li>
+                            <li><a href="AddFlight.aspx"><i class="glyphicon glyphicon-plus"></i> Add flight</a></li>
+                            <li><a href="EditFlights.aspx"><i class="glyphicon glyphicon-plus"></i> Edit flight</a></li>
+                            <li><a href="AddJob.aspx"><i class="glyphicon glyphicon-plus"></i> Add Job</a></li>
+                            <li><a href="TicketSales.aspx"><i class="glyphicon glyphicon-plus"></i> Ticket Sales</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="content container-fluid">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

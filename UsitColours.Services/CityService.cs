@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UsitColours.Data.Contracts;
 using UsitColours.Models;
+using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
 
 namespace UsitColours.Services
 {
-    public class CityService
+    public class CityService : ICityService
     {
         private readonly IUsitData usitData;
         private readonly ILocationFactory locationFactory;
@@ -51,6 +52,14 @@ namespace UsitColours.Services
         public IEnumerable<City> GetAllCities()
         {
             return this.usitData.Cities.All.ToList();
+        }
+
+        public void AddCity(City city)
+        {
+
+            this.usitData.Cities.Add(city);
+
+            this.usitData.SaveChanges();
         }
     }
 }

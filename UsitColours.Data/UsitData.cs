@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UsitColours.Data.Contracts;
 using UsitColours.Data.Repositories;
 using UsitColours.Models;
@@ -7,6 +8,7 @@ namespace UsitColours.Data
 {
     public class UsitData : IUsitData
     {
+        private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
         private IDbContext dbContext;
 
         public UsitData(IDbContext dbContext)
@@ -91,7 +93,13 @@ namespace UsitColours.Data
         private IGenericRepository<T> GetRepository<T>()
          where T : class
         {
-            return (IGenericRepository<T>)(Activator.CreateInstance(typeof(T), this.dbContext));
+            if (!this.repositories.ContainsKey(typeof(T)))
+            {
+                var type = typeof(EfGenericRepository<T>);
+                return (IGenericRepository<T>)(Activator.CreateInstance(type, this.dbContext));
+            }
+
+            return (IGenericRepository<T>)this.repositories[typeof(T)];
         }
     }
 }

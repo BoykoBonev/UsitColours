@@ -12,10 +12,10 @@ namespace UsitColours.Areas.Admin.Controllers
     {
         private readonly ICountryService countryServices;
         private readonly ICityService cityService;
-
+        private readonly IAirlineService airlineService;
         private readonly IMappingService mappingService;
 
-        public AdminController(ICountryService countryServices, IMappingService mappingService, ICityService cityService)
+        public AdminController(ICountryService countryServices, IMappingService mappingService, ICityService cityService, IAirlineService airlineService)
         {
             if(countryServices == null)
             {
@@ -32,6 +32,13 @@ namespace UsitColours.Areas.Admin.Controllers
                 throw new NullReferenceException("CityService");
             }
 
+            if(airlineService == null)
+            {
+                throw new NullReferenceException("AirlineService");
+
+            }
+
+            this.airlineService = airlineService;
             this.cityService = cityService;
             this.mappingService = mappingService;
             this.countryServices = countryServices;
@@ -68,7 +75,7 @@ namespace UsitColours.Areas.Admin.Controllers
                 Countries = countries
             };
 
-            return View(viewModel);
+            return PartialView("_AddCity", viewModel);
         }
 
         [HttpPost]
@@ -83,6 +90,44 @@ namespace UsitColours.Areas.Admin.Controllers
             this.cityService.AddCity(city);
 
             this.TempData["Notification"] = "Exchange information between two requests";
+            return View("Index");
+        }
+
+
+        public ActionResult AddAirline()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddAirline(string name)
+        {
+            this.airlineService.AddAirline(name);
+            return View("Index");
+        }
+
+
+        public ActionResult AddAirport()
+        {
+            var countries = this.countryServices.GetAllCountries()
+              .AsQueryable()
+              .Select(x => mappingService.Map<CountryViewModel>(x))
+              .Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() })
+              .ToList();
+
+            var viewModel = new AddAirportViewModel()
+            {
+                Countries = countries
+            };
+
+            return View(viewModel);
+
+        }
+
+        [HttpPost]
+        public ActionResult AddAirport(string name)
+        {
+            this.airlineService.AddAirline(name);
             return View("Index");
         }
 

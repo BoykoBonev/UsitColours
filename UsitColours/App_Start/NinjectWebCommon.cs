@@ -69,11 +69,15 @@ namespace UsitColours.App_Start
         {
             kernel.Bind<IDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<ILocationFactory>().ToFactory().InRequestScope();
+            kernel.Bind<IAirlineFactory>().ToFactory().InRequestScope();
+
             kernel.Bind<IUsitData>().To<UsitData>().InRequestScope();
             kernel.Bind<ICityService>().To<CityService>().InRequestScope();
             kernel.Bind<IMappingService>().To<MappingService>().InRequestScope();
             kernel.Bind<ICountryService>().To<CountryService>().InRequestScope();
+            kernel.Bind<IAirlineService>().To<AirlineService>().InRequestScope();
 
-        }        
+
+        }
     }
 }

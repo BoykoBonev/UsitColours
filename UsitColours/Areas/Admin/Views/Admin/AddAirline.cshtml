@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "AddAirline";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AddAirline</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Add airline</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-control">
+
+            <label>Name: </label>
+            <input type="text" name="name" />
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Airline" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

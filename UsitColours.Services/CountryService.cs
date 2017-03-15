@@ -12,6 +12,7 @@ namespace UsitColours.Services
     {
         private readonly IUsitData usitData;
         private readonly ILocationFactory locationFactory;
+
         public CountryService(ILocationFactory locationFactory, IUsitData usitData)
         {
             if(usitData == null)

@@ -7,8 +7,8 @@ namespace UsitColours.Areas.Admin.Models
     {
         public List<SelectListItem> Countries { get; set; }
 
-        public List<SelectListItem> Cities { get; set; }
-
         public string Name { get; set; }
+
+        public int CityId { get; set; }
     }
 }

@@ -205,5 +205,11 @@ namespace UsitColours.Services
             this.usitData.Flights.Add(flight);
             this.usitData.SaveChanges();
         }
+
+        public void AddFlight(Flight flight)
+        {
+            this.usitData.Flights.Add(flight);
+            this.usitData.SaveChanges();
+        }
     }
 }

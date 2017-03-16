@@ -1,0 +1,166 @@
+﻿
+@model  UsitColours.Areas.Admin.Models.AddFlightViewModel
+
+
+<h2>AddFlight</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-control">
+
+            @Html.DropDownList("CountriesDeparture", Model.Countries, new { id = "countriesDepartureList" });
+        </div>
+        <div class="form-control">
+
+            @Html.DropDownList("CitiesDeparture", new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select City", new { id = "citiesDepartureList" });
+        </div>
+        <div class="form-control">
+
+            @Html.DropDownListFor(m => m.AirportDepartureId, new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select airport", new { id = "airportDepartureList" });
+        </div>
+
+        <div class="form-control">
+
+            @Html.DropDownList("CountriesArival", Model.Countries, new { id = "countriesArivalList" });
+        </div>
+        <div class="form-control">
+
+            @Html.DropDownList("CitiesArival", new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select City", new { id = "citiesArivalList" });
+        </div>
+        <div class="form-control">
+
+            @Html.DropDownListFor(m => m.AirportArrivalId, new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select airport", new { id = "airportArivalList" });
+        </div>
+
+            <div class="form-control">
+
+                @Html.DropDownListFor(m => m.AirlineId, Model.Airlines);
+            </div>
+            <div class="form-control">
+
+                @Html.LabelFor(m => m.DateOfDeparture, "Departure Date");
+                @Html.EditorFor(m => m.DateOfDeparture)
+                @Html.ValidationMessageFor(m => m.DateOfDeparture)
+            </div>
+
+            <div class="form-control">
+
+                @Html.LabelFor(m => m.DateOfArrival, "Arival Date");
+                @Html.EditorFor(m => m.DateOfArrival)
+                @Html.ValidationMessageFor(m => m.DateOfArrival)
+            </div>
+
+            <div class="form-control">
+
+                @Html.LabelFor(m => m.Price, "Price");
+                @Html.EditorFor(m => m.Price)
+                @Html.ValidationMessageFor(m => m.Price)
+            </div>  
+
+            <div class="form-control">
+
+                @Html.LabelFor(m => m.AvailableSeats, "Available seats");
+                @Html.EditorFor(m => m.AvailableSeats)
+                @Html.ValidationMessageFor(m => m.AvailableSeats)
+            </div>  
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="AddFlight" class="btn btn-success" />
+            </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#countriesDepartureList").change(function () {
+            var dID = $(this).val();
+            $.getJSON("../Admin/Admin/LoadCities", { countryId: dID },
+                   function (data) {
+                       var select = $("#citiesDepartureList");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: 0,
+                           text: "Select City"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.Value,
+                               text: itemData.Text
+                           }));
+                       });
+                   });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#citiesDepartureList").change(function () {
+            var dID = $(this).val();
+            $.getJSON("../Admin/Admin/LoadAirports", { cityId: dID },
+                   function (data) {
+                       var select = $("#airportDepartureList");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: 0,
+                           text: "Select airport"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           console.log(index);
+                           console.log(itemData);
+                           select.append($('<option/>', {
+                               value: itemData.Id,
+                               text: itemData.Name
+                           }));
+                       });
+                   });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#countriesArivalList").change(function () {
+            var dID = $(this).val();
+            $.getJSON("../Admin/Admin/LoadCities", { countryId: dID },
+                   function (data) {
+                       var select = $("#citiesArivalList");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: 0,
+                           text: "Select City"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.Value,
+                               text: itemData.Text
+                           }));
+                       });
+                   });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#citiesArivalList").change(function () {
+            var dID = $(this).val();
+            $.getJSON("../Admin/Admin/LoadAirports", { cityId: dID },
+                   function (data) {
+                       var select = $("#airportArivalList");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: 0,
+                           text: "Select airport"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.Id,
+                               text: itemData.Name
+                           }));
+                       });
+                   });
+        });
+    });
+</script>

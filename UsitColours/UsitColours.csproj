@@ -228,7 +228,10 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Models\AddAirportViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AddCityViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AddFlightViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AirportViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CountryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FlightModel.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\IHaveCustomMappings.cs" />
     <Compile Include="AutoMapper\IMapFrom.cs" />
@@ -265,9 +268,11 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AddCountry.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddCountry.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AddCity.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AddAirline.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddAirline.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddAirport.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddFlight.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

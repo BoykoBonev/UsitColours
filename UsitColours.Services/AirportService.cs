@@ -44,6 +44,12 @@ namespace UsitColours.Services
             this.usitData.Airports.Add(airport);
             this.usitData.SaveChanges();
         }
+
+        public void AddAirport(Airport airport)
+        {
+            this.usitData.Airports.Add(airport);
+            this.usitData.SaveChanges();
+        }
     }
 }
 

@@ -1,0 +1,62 @@
+﻿@model  UsitColours.Areas.Admin.Models.AddAirportViewModel
+
+
+<h2>AddCity</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Add country</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-control">
+
+            @Html.DropDownList("Countries", Model.Countries, new { id = "countriesList" });
+        </div>
+        <div class="form-control">
+
+
+            @Html.DropDownListFor(m => m.CityId, new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select City", new { id = "cityList" });
+        </div>
+
+        <div class="form-control">
+
+            @Html.LabelFor(m => m.Name, "Name");
+            @Html.EditorFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="AddAirport" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#countriesList").change(function () {
+
+            console.log("asddsa");
+            var dID = $(this).val();
+            $.getJSON("../Admin/Admin/LoadCities", { countryId: dID },
+                   function (data) {
+                       var select = $("#cityList");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: 0,
+                           text: "Select City"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.Value,
+                               text: itemData.Text
+                           }));
+                       });
+                   });
+        });
+    });
+</script>

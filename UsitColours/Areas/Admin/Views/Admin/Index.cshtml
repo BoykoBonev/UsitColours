@@ -13,9 +13,8 @@
                 <div class="sidebar content-box" style="display: block;">
                     <ul class="nav">
                         <li>
-
                             @Ajax.ActionLink(
-                           "Load More Posts", "AddCity", "Admin", new AjaxOptions()
+                           "Add country", "AddCountry", "Admin", new AjaxOptions()
                            {
                                HttpMethod = "GET",
                                AllowCache = false,
@@ -23,10 +22,46 @@
                                UpdateTargetId = "admin-content"
                            })
                         </li>
-                        <li><a href="AddCountry.aspx"><i class="glyphicon glyphicon-plus"></i> Add country</a></li>
-                        <li><a href="AddAirport.aspx"><i class="glyphicon glyphicon-plus"></i> Add airport</a></li>
-                        <li><a href="AddAirline.aspx"><i class="glyphicon glyphicon-plus"></i> Add airline</a></li>
-                        <li><a href="AddFlight.aspx"><i class="glyphicon glyphicon-plus"></i> Add flight</a></li>
+                        <li>
+                            @Ajax.ActionLink(
+                           "Add city", "AddCity", "Admin", new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               AllowCache = false,
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "admin-content"
+                           })
+                        </li>
+                        <li>
+                            @Ajax.ActionLink(
+                           "Add airline", "AddAirline", "Admin", new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               AllowCache = false,
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "admin-content"
+                           })
+                        </li>
+                        <li>
+                            @Ajax.ActionLink(
+                           "Add airport", "AddAirport", "Admin", new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               AllowCache = false,
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "admin-content"
+                           })
+                        </li>
+                        <li>
+                            @Ajax.ActionLink(
+                           "Add Flight", "AddFlight", "Admin", new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               AllowCache = false,
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "admin-content"
+                           })
+                        </li>
                         <li><a href="EditFlights.aspx"><i class="glyphicon glyphicon-plus"></i> Edit flight</a></li>
                         <li><a href="AddJob.aspx"><i class="glyphicon glyphicon-plus"></i> Add Job</a></li>
                         <li><a href="TicketSales.aspx"><i class="glyphicon glyphicon-plus"></i> Ticket Sales</a></li>
@@ -36,6 +71,7 @@
             <div class="col-md-10">
                 <div class="content container-fluid">
                     <div id="admin-content">
+                        <h1>Admin panel</h1>
                     </div>
                 </div>
             </div>

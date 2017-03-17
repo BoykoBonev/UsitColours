@@ -25,7 +25,8 @@
                             @foreach (var flight in Model.Flights)
                             {
                                 <tr>
-                                    <td><a class="btn btn-sm btn-success" href="DetailFlight?id=<%#:Item.Id%>">Info</a></td>
+                                    <td>
+                                    @Html.ActionLink("Info", "Details", "Flight", new { id = @flight.Id }, null) </td>
                                     <td> @flight.AirportDepartureName</td>
                                     <td>@flight.AirportArrivalName</td>
                                     <td>@flight.DateOfDeparture.ToString("dd/MM/yyyy")</td>
@@ -57,3 +58,31 @@
 
 
 
+@*<asp:ListView runat="server" ID="SoonestJobs" ItemType="Models.Job">
+        <LayoutTemplate>
+            <h3>Starting soon</h3>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Position</th>
+                        <th>Starting</th>
+                        <th>City</th>
+                        <th>Wage per hour</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                </tbody>
+            </table>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <tr>
+                <td><a class="btn btn-sm btn-success" href="JobDetails.aspx?id=<%#:Item.Id%>">Info</a></td>
+                <td><%# Item.JobTitle %></td>
+                <td><%# Item.StartDate.ToString("dd/MM/yyyy")%></td>
+                <td><%# Item.City.Name%></td>
+                <td><%# Item.Wage %></td>
+            </tr>
+        </ItemTemplate>
+    </asp:ListView>*@

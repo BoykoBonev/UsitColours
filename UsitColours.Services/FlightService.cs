@@ -195,6 +195,7 @@ namespace UsitColours.Services
         public Flight GetDetailedFlight(int id)
         {
             var flight = this.usitData.Flights.GetById(id);
+
             return flight;
         }
 

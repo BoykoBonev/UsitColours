@@ -25,7 +25,7 @@
                             @foreach (var flight in Model.Flights)
                             {
                                 <tr>
-                                    <td>
+                                    <td>    
                                     @Html.ActionLink("Info", "Details", "Flight", new { id = @flight.Id }, null) </td>
                                     <td> @flight.AirportDepartureName</td>
                                     <td>@flight.AirportArrivalName</td>

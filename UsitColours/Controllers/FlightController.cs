@@ -1,30 +1,33 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using UsitColours.Areas.Admin.Models;
 using UsitColours.AutoMapper;
 using UsitColours.Models;
 using UsitColours.Services.Contracts;
 
 namespace UsitColours.Controllers
 {
-    public class FlightController : Controller
+    public class FlightController : CommonController
     {
         private readonly IFlightService flightService;
-        private readonly IMappingService mappingService;
+        private readonly ICountryService countryService;
 
-        public FlightController(IFlightService flightService, IMappingService mappingService)
+        public FlightController(IFlightService flightService, IMappingService mappingService, ICountryService countryService, IAirportService airportService, ICityService cityService)
+            : base(mappingService, cityService, airportService )
         {
             if(flightService == null)
             {
                 throw new NullReferenceException("FlightService");
             }
 
-            if(mappingService == null)
+            if (countryService == null)
             {
-                throw new NullReferenceException("MappingService");
+                throw new NullReferenceException("CountryService");
             }
 
+            this.countryService = countryService;
             this.flightService = flightService;
-            this.mappingService = mappingService;
         }
 
         public ActionResult Details(int? id)
@@ -36,10 +39,25 @@ namespace UsitColours.Controllers
             int flightId = (int)id;
             var flight = this.flightService.GetDetailedFlight(flightId);
 
-            var mappedFlight = this.mappingService.Map<DetailsFlightViewModel>(flight);
-
+            var mappedFlight = base.MappingService.Map<DetailsFlightViewModel>(flight);
 
             return View(mappedFlight);
+        }
+
+
+        public ActionResult Search()
+        {
+            var countries = this.countryService.GetAllCountries()
+             .Select(x => MappingService.Map<CountryViewModel>(x))
+             .Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() })
+             .ToList();
+
+            var viewModel = new SearchViewModel()
+            {
+                Countries = countries
+            };
+
+            return View(viewModel);
         }
     }
 }

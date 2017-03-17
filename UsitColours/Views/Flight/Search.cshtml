@@ -1,7 +1,10 @@
-﻿
-@model  UsitColours.Areas.Admin.Models.AddFlightViewModel
+﻿@model  UsitColours.Models.SearchViewModel
 
 <h2>AddFlight</h2>
+
+@Scripts.Render("~/bundles/jquery")
+
+@Scripts.Render("~/bundles/unobtrusive")
 
 @using (Html.BeginForm())
 {
@@ -10,68 +13,49 @@
         @Html.ValidationSummary(true)
         <div class="form-control">
 
+            <label>Departure country</label>
             @Html.DropDownList("CountriesDeparture", Model.Countries, new { id = "countriesDepartureList" });
         </div>
         <div class="form-control">
-
+            <label>Departure city</label>
             @Html.DropDownList("CitiesDeparture", new SelectList(Enumerable.Empty<SelectListItem>()),
             "Select City", new { id = "citiesDepartureList" });
         </div>
         <div class="form-control">
-
+            <label>Departure airport</label>
             @Html.DropDownListFor(m => m.AirportDepartureId, new SelectList(Enumerable.Empty<SelectListItem>()),
             "Select airport", new { id = "airportDepartureList" });
         </div>
 
         <div class="form-control">
-
+            <label>Arrival country</label>
             @Html.DropDownList("CountriesArival", Model.Countries, new { id = "countriesArivalList" });
         </div>
         <div class="form-control">
-
+            <label>Arrival city</label>
             @Html.DropDownList("CitiesArival", new SelectList(Enumerable.Empty<SelectListItem>()),
             "Select City", new { id = "citiesArivalList" });
         </div>
         <div class="form-control">
-
+            <label>Arrival airport</label>
             @Html.DropDownListFor(m => m.AirportArrivalId, new SelectList(Enumerable.Empty<SelectListItem>()),
             "Select airport", new { id = "airportArivalList" });
         </div>
 
-            <div class="form-control">
+        <div class="form-control">
+            @Html.LabelFor(m => m.DateOfDeparture, "Departure Date");
+            @Html.EditorFor(m => m.DateOfDeparture)
+            @Html.ValidationMessageFor(m => m.DateOfDeparture)
+        </div>
 
-                @Html.DropDownListFor(m => m.AirlineId, Model.Airlines);
-            </div>
-            <div class="form-control">
-
-                @Html.LabelFor(m => m.DateOfDeparture, "Departure Date");
-                @Html.EditorFor(m => m.DateOfDeparture)
-                @Html.ValidationMessageFor(m => m.DateOfDeparture)
-            </div>
-
-            <div class="form-control">
-
-                @Html.LabelFor(m => m.DateOfArrival, "Arival Date");
-                @Html.EditorFor(m => m.DateOfArrival)
-                @Html.ValidationMessageFor(m => m.DateOfArrival)
-            </div>
-
-            <div class="form-control">
-
-                @Html.LabelFor(m => m.Price, "Price");
-                @Html.EditorFor(m => m.Price)
-                @Html.ValidationMessageFor(m => m.Price)
-            </div>  
-
-            <div class="form-control">
-
-                @Html.LabelFor(m => m.AvailableSeats, "Available seats");
-                @Html.EditorFor(m => m.AvailableSeats)
-                @Html.ValidationMessageFor(m => m.AvailableSeats)
-            </div>  
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="AddFlight" class="btn btn-success" />
-            </div>
+        <div class="form-control">
+            @Html.LabelFor(m => m.AvailableSeats, "Available seats");
+            @Html.EditorFor(m => m.AvailableSeats)
+            @Html.ValidationMessageFor(m => m.AvailableSeats)
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
     </div>
 }
 
@@ -79,7 +63,7 @@
     $(document).ready(function () {
         $("#countriesDepartureList").change(function () {
             var dID = $(this).val();
-            $.getJSON("../Admin/Admin/LoadCities", { countryId: dID },
+            $.getJSON("../Flight/LoadCities", { countryId: dID },
                    function (data) {
                        var select = $("#citiesDepartureList");
                        select.empty();
@@ -100,7 +84,7 @@
     $(document).ready(function () {
         $("#citiesDepartureList").change(function () {
             var dID = $(this).val();
-            $.getJSON("../Admin/Admin/LoadAirports", { cityId: dID },
+            $.getJSON("../Flight/LoadAirports", { cityId: dID },
                    function (data) {
                        var select = $("#airportDepartureList");
                        select.empty();
@@ -123,7 +107,7 @@
     $(document).ready(function () {
         $("#countriesArivalList").change(function () {
             var dID = $(this).val();
-            $.getJSON("../Admin/Admin/LoadCities", { countryId: dID },
+            $.getJSON("../Flight/LoadCities", { countryId: dID },
                    function (data) {
                        var select = $("#citiesArivalList");
                        select.empty();
@@ -144,7 +128,7 @@
     $(document).ready(function () {
         $("#citiesArivalList").change(function () {
             var dID = $(this).val();
-            $.getJSON("../Admin/Admin/LoadAirports", { cityId: dID },
+            $.getJSON("../Flight/LoadAirports", { cityId: dID },
                    function (data) {
                        var select = $("#airportArivalList");
                        select.empty();

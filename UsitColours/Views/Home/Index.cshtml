@@ -1,31 +1,59 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model UsitColours.Models.HomeViewModel
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/Images/plane-front.jpg" alt="Flights" style="width: 550px; height: 400px; border-radius: 7px;" />
+            <h2>Departing soon..</h2>
+            <p>
+                If you cannot see your flight here make sure you to use search button.
+            </p>
+
+                    <h3>Top Offers</h3>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Departure airport</th>
+                                <th>Arrival airport</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var flight in Model.Flights)
+                            {
+                                <tr>
+                                    <td><a class="btn btn-sm btn-success" href="DetailFlight?id=<%#:Item.Id%>">Info</a></td>
+                                    <td> @flight.AirportDepartureName</td>
+                                    <td>@flight.AirportArrivalName</td>
+                                    <td>@flight.DateOfDeparture.ToString("dd/MM/yyyy")</td>
+                                    <td>@flight.Price </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+            <p>
+                <a class="btn btn-default" href="/SearchFlight">Search &raquo;</a>
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <img src="/Images/work-front.jpg" alt="Jobs" style="width: 550px; height: 400px; border-radius: 7px;" />
+            <h2>Soonest starting job offers..</h2>
+            <p>
+                If you want to search for more please use the search button.
+            </p>
+           
+
+            <p>
+                <a class="btn btn-default" href="/SearchJob">Search &raquo;</a>
+            </p>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+

@@ -72,6 +72,8 @@ namespace UsitColours.App_Start
             kernel.Bind<IAirlineFactory>().ToFactory().InRequestScope();
             kernel.Bind<IAirportFactory>().ToFactory().InRequestScope();
             kernel.Bind<IFlightFactory>().ToFactory().InRequestScope();
+            kernel.Bind<IJobFactory>().ToFactory().InRequestScope();
+
             kernel.Bind<IMappedClassFactory>().ToFactory().InRequestScope();
 
             kernel.Bind<IUsitData>().To<UsitData>().InRequestScope();
@@ -81,6 +83,8 @@ namespace UsitColours.App_Start
             kernel.Bind<IAirlineService>().To<AirlineService>().InRequestScope();
             kernel.Bind<IAirportService>().To<AirportService>().InRequestScope();
             kernel.Bind<IFlightService>().To<FlightService>().InRequestScope();
+            kernel.Bind<IJobService>().To<JobService>().InRequestScope();
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace UsitColours.Data
 
         public UsitData(IDbContext dbContext)
         {
-            if(dbContext == null)
+            if (dbContext == null)
             {
                 throw new NullReferenceException("DbContext");
             }
@@ -87,7 +87,7 @@ namespace UsitColours.Data
 
         public void SaveChanges()
         {
-           this.dbContext.SaveChanges();
+            this.dbContext.SaveChanges();
         }
 
         private IGenericRepository<T> GetRepository<T>()
@@ -96,10 +96,11 @@ namespace UsitColours.Data
             if (!this.repositories.ContainsKey(typeof(T)))
             {
                 var type = typeof(EfGenericRepository<T>);
-                return (IGenericRepository<T>)(Activator.CreateInstance(type, this.dbContext));
+
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.dbContext));
             }
 
             return (IGenericRepository<T>)this.repositories[typeof(T)];
-        }
+        } 
     }
 }

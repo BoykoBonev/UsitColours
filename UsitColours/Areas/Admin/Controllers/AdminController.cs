@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using UsitColours.Areas.Admin.Models;
 using UsitColours.AutoMapper;
@@ -14,8 +15,9 @@ namespace UsitColours.Areas.Admin.Controllers
         private readonly ICountryService countryServices;
         private readonly IAirlineService airlineService;
         private readonly IFlightService flightService;
+        private readonly IJobService jobService;
 
-        public AdminController(ICountryService countryServices, IMappingService mappingService, ICityService cityService, IAirlineService airlineService, IAirportService airportService, IFlightService flightService)
+        public AdminController(ICountryService countryServices, IMappingService mappingService, ICityService cityService, IAirlineService airlineService, IAirportService airportService, IFlightService flightService, IJobService jobService)
             : base(mappingService, cityService, airportService)
         {
             if (countryServices == null)
@@ -33,6 +35,12 @@ namespace UsitColours.Areas.Admin.Controllers
                 throw new NullReferenceException("FlightService");
             }
 
+            if(jobService == null)
+            {
+                throw new NullReferenceException("JobService");
+            }
+
+            this.jobService = jobService;
             this.flightService = flightService;
             this.airlineService = airlineService;
             this.countryServices = countryServices;
@@ -168,6 +176,54 @@ namespace UsitColours.Areas.Admin.Controllers
             return View("Index");
         }
 
-       
+        public ActionResult AddJob()
+        {
+            var countries = this.countryServices.GetAllCountries()
+              .AsQueryable()
+              .Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() })
+              .ToList();
+
+
+            var viewModel = new AddJobViewModel()
+            {
+                Countries = countries,
+            };
+
+            return PartialView("_AddJob", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddJob(JobViewModel job, HttpPostedFileBase file)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(job);
+            }
+            string path = string.Empty;
+            if (job.IsDefaultImage)
+            {
+                path = System.IO.Path.Combine(
+                                 Server.MapPath("~/images"), "job-default.jpg");
+            }
+            else
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                path = System.IO.Path.Combine(
+                                 Server.MapPath("~/images"), pic);
+
+                file.SaveAs(path);
+            }
+
+            job.ImagePath = path;
+
+
+            var jobModel = base.MappingService.Map<Job>(job);
+
+            this.jobService.AddJob(jobModel);
+
+            return View("Index");
+        }
+
+
     }
 }

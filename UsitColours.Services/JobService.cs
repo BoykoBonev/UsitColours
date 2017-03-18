@@ -38,6 +38,12 @@ namespace UsitColours.Services
             this.usitData.SaveChanges();
         }
 
+        public void AddJob(Job job)
+        {
+            this.usitData.Jobs.Add(job);
+            this.usitData.SaveChanges();
+        }
+
         public IEnumerable<Job> GetAllJobs()
         {
             return this.usitData.Jobs.All.ToList();

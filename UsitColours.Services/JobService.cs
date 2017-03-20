@@ -13,29 +13,15 @@ namespace UsitColours.Services
     public class JobService : IJobService
     {
         private readonly IUsitData usitData;
-        private readonly IJobFactory jobFactory;
-        public JobService(IUsitData usitData, IJobFactory jobFactory)
+
+        public JobService(IUsitData usitData)
         {
             if (usitData == null)
             {
                 throw new NullReferenceException("UsitData");
             }
 
-            if(jobFactory == null)
-            {
-                throw new NullReferenceException("JobFactory");
-            }
-
             this.usitData = usitData;
-            this.jobFactory = jobFactory;
-        }
-
-        public void AddJob(string jobTitle, string jobDescription, int slots, DateTime startDate, DateTime endDate, decimal wage, string companyName, decimal price, int cityId, string imagePath)
-        {
-            Job job = this.jobFactory.CreateJob(cityId, jobTitle, jobDescription, slots, startDate, endDate, wage, companyName, price, imagePath);
-
-            this.usitData.Jobs.Add(job);
-            this.usitData.SaveChanges();
         }
 
         public void AddJob(Job job)

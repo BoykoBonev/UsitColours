@@ -130,7 +130,7 @@ namespace UsitColours.Services
 
                 var currentFlight = this.usitData.Flights.GetById(currentFlightId);
 
-                var newMappedFlight = this.mappedFlightFactory.CreatePresentationFlight(currentFlight.Id, currentFlight.AirportDeparture.City.Name, currentFlight.AirportArrival.City.Name, currentFlight.AirportDeparture.Name, currentFlight.AirportArrival.Name, currentFlight.DateOfDeparture, currentFlight.DateOfArrival, currentFlight.Price, currentFlight.Airline.Name);
+                var newMappedFlight = this.mappedFlightFactory.CreatePresentationFlight(currentFlight.Id, currentFlight.AirportDeparture.City.Name, currentFlight.AirportArrival.City.Name, currentFlight.AirportDeparture.Name, currentFlight.AirportArrival.Name, currentFlight.DateOfDeparture, currentFlight.DateOfArrival, currentFlight.Price, currentFlight.Airline.Name, currentFlight.AvailableSeats);
 
                 resultFlights.Add(newMappedFlight);
             }

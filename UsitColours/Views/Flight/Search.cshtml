@@ -1,63 +1,77 @@
 ﻿@model  UsitColours.Models.SearchViewModel
 
-<h2>AddFlight</h2>
+<div class="container">
+    <div class="col-lg-6">
+        <h2>Search flight</h2>
 
-@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jquery")
 
-@Scripts.Render("~/bundles/unobtrusive")
+        @Scripts.Render("~/bundles/unobtrusive")
 
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-control">
+        @using (Ajax.BeginForm("Search", "Flight", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ticket",
+            LoadingElementId = "loading"
+        }))
+        {
+            <div class="form-group">
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="form-group">
 
-            <label>Departure country</label>
-            @Html.DropDownList("CountriesDeparture", Model.Countries, new { id = "countriesDepartureList" });
-        </div>
-        <div class="form-control">
-            <label>Departure city</label>
-            @Html.DropDownList("CitiesDeparture", new SelectList(Enumerable.Empty<SelectListItem>()),
-            "Select City", new { id = "citiesDepartureList" });
-        </div>
-        <div class="form-control">
-            <label>Departure airport</label>
-            @Html.DropDownListFor(m => m.AirportDepartureId, new SelectList(Enumerable.Empty<SelectListItem>()),
-            "Select airport", new { id = "airportDepartureList" });
-        </div>
+                    <label>Departure country</label>
+                    @Html.DropDownList("CountriesDeparture", Model.Countries, new { id = "countriesDepartureList", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Departure city</label>
+                    @Html.DropDownList("CitiesDeparture", new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select City", new { id = "citiesDepartureList", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Departure airport</label>
+                    @Html.DropDownListFor(m => m.AirportDepartureId, new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select airport", new { id = "airportDepartureList", @class = "form-control" })
+                </div>
 
-        <div class="form-control">
-            <label>Arrival country</label>
-            @Html.DropDownList("CountriesArival", Model.Countries, new { id = "countriesArivalList" });
-        </div>
-        <div class="form-control">
-            <label>Arrival city</label>
-            @Html.DropDownList("CitiesArival", new SelectList(Enumerable.Empty<SelectListItem>()),
-            "Select City", new { id = "citiesArivalList" });
-        </div>
-        <div class="form-control">
-            <label>Arrival airport</label>
-            @Html.DropDownListFor(m => m.AirportArrivalId, new SelectList(Enumerable.Empty<SelectListItem>()),
-            "Select airport", new { id = "airportArivalList" });
-        </div>
+                <div class="form-group">
+                    <label>Arrival country</label>
+                    @Html.DropDownList("CountriesArival", Model.Countries, new { id = "countriesArivalList", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Arrival city</label>
+                    @Html.DropDownList("CitiesArival", new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select City", new { id = "citiesArivalList", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Arrival airport</label>
+                    @Html.DropDownListFor(m => m.AirportArrivalId, new SelectList(Enumerable.Empty<SelectListItem>()),
+            "Select airport", new { id = "airportArivalList", @class = "form-control" })
+                </div>
 
-        <div class="form-control">
-            @Html.LabelFor(m => m.DateOfDeparture, "Departure Date");
-            @Html.EditorFor(m => m.DateOfDeparture)
-            @Html.ValidationMessageFor(m => m.DateOfDeparture)
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DateOfDeparture, "Departure Date")
+                    @Html.EditorFor(m => m.DateOfDeparture, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.DateOfDeparture)
+                </div>
 
-        <div class="form-control">
-            @Html.LabelFor(m => m.AvailableSeats, "Available seats");
-            @Html.EditorFor(m => m.AvailableSeats)
-            @Html.ValidationMessageFor(m => m.AvailableSeats)
-        </div>
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Search" class="btn btn-success" />
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AvailableSeats, "Available seats")
+                    @Html.EditorFor(m => m.AvailableSeats, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.AvailableSeats)
+                </div>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-success" />
+                </div>
+            </div>
+        }
     </div>
-}
+    <div class="col-lg-6" id="ticket">
+    </div>
+    <div id="loading">
+        Loading...
+    </div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {

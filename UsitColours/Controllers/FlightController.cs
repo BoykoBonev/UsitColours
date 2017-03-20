@@ -41,7 +41,7 @@ namespace UsitColours.Controllers
 
             var mappedFlight = base.MappingService.Map<DetailsFlightViewModel>(flight);
 
-            return View(mappedFlight);
+            return PartialView("_DetailFlight", mappedFlight);
         }
 
 
@@ -58,6 +58,28 @@ namespace UsitColours.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Search(int AirportDepartureId, int AirportArrivalId, DateTime DateOfDeparture, int AvailableSeats)
+            {
+            var flights = this.flightService.GetFlights(AirportDepartureId, AirportArrivalId, DateOfDeparture, AvailableSeats);
+
+            var flightsViewModel = flights
+                .Select(f => MappingService.Map<DetailsFlightViewModel>(f))
+                .ToList();
+
+            if(flightsViewModel.Count == 0)
+            {
+                this.TempData["Ticket"] = null;
+            }
+            else
+            {
+                this.TempData["Ticket"] = flightsViewModel;
+
+            }
+
+            return PartialView("_FlightSearchResult", flightsViewModel);
         }
     }
 }

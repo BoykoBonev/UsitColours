@@ -13,19 +13,13 @@ namespace UsitColours.Services
     public class UserService : IUserService
     {
         private readonly IUsitData usitData;
-        private readonly IAirportFactory airportFactory;
         private readonly ITicketFactory ticketFactory;
 
-        public UserService(IUsitData usitData, IAirportFactory airportFactory, ITicketFactory ticketFactory)
+        public UserService(IUsitData usitData, ITicketFactory ticketFactory)
         {
             if (usitData == null)
             {
                 throw new NullReferenceException("UsitData");
-            }
-
-            if (airportFactory == null)
-            {
-                throw new NullReferenceException("AirportFactory");
             }
 
             if (ticketFactory == null)
@@ -35,7 +29,6 @@ namespace UsitColours.Services
 
             this.ticketFactory = ticketFactory;
             this.usitData = usitData;
-            this.airportFactory = airportFactory;
         }
 
         public bool BuyTicket(string userId, IEnumerable<PresentationFlight> flights)

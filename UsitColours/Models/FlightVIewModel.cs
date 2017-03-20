@@ -1,5 +1,6 @@
 ﻿using System;
 using UsitColours.AutoMapper;
+using UsitColours.Services.Models;
 
 namespace UsitColours.Models
 {
@@ -16,5 +17,3 @@ namespace UsitColours.Models
         public decimal Price { get; set; }
     }
 }
-
-

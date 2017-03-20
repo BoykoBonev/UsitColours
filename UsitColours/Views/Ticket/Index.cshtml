@@ -1,0 +1,18 @@
+﻿@model IEnumerable<UsitColours.Models.DetailsFlightViewModel>
+
+@foreach (var flight in Model)
+{
+    @Html.Partial("_DetailFlight", flight);
+}
+
+@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+{
+     this.TempData["Ticket"] = Model;
+
+    @Html.ActionLink("Buy", "Buy", new { controller = "Ticket" }, new { @class = "btn btn-success" })
+}
+
+
+
+
+

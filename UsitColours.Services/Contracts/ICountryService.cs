@@ -7,7 +7,7 @@ namespace UsitColours.Services.Contracts
     {
         void AddCountry(string country);
 
-        void AddCountry(Country country);
+    //    void AddCountry(Country country);
 
         IEnumerable<Country> GetAllCountries();
     }

@@ -43,11 +43,11 @@ namespace UsitColours.Services
             return this.usitData.Countries.All.ToList();
         }
 
-        public void AddCountry(Country country)
-        {
-            this.usitData.Countries.Add(country);
+        //public void AddCountry(Country country)
+        //{
+        //    this.usitData.Countries.Add(country);
 
-            this.usitData.SaveChanges();
-        }
+        //    this.usitData.SaveChanges();
+        //}
     }
 }

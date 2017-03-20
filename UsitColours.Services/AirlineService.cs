@@ -11,7 +11,8 @@ namespace UsitColours.Services
     public class AirlineService : IAirlineService
     {
         private readonly IAirlineFactory airlineFactory;
-        private IUsitData usitData;
+        private readonly IUsitData usitData;
+
         public AirlineService(IUsitData usitData, IAirlineFactory airlineFactory)
         {
             if(usitData == null)
@@ -25,6 +26,7 @@ namespace UsitColours.Services
             }
 
             this.usitData = usitData;
+            this.airlineFactory = airlineFactory;
         }
 
         public IEnumerable<Airline> GetAllAirlines()

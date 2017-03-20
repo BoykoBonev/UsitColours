@@ -56,6 +56,9 @@
     <Compile Include="Services\AirlineServiceTests\AddAirline_Should.cs" />
     <Compile Include="Services\AirlineServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\AirlineServiceTests\GetAllAirlines_Should.cs" />
+    <Compile Include="Services\AirportServiceTests\AddAirport_Should.cs" />
+    <Compile Include="Services\AirportServiceTests\Constructor_Should.cs" />
+    <Compile Include="Services\AirportServiceTests\GetAllAirportsInCity_Should.cs" />
     <Compile Include="Services\CityServiceTests\AddCity_Should.cs" />
     <Compile Include="Services\CityServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\CityServiceTests\GetCityInCountry_Should.cs" />

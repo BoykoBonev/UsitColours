@@ -10,23 +10,16 @@ namespace UsitColours.Services
 {
     public class AirportService : IAirportService
     {
-        private readonly IAirportFactory airportFactory;
         private IUsitData usitData;
 
-        public AirportService(IUsitData usitData, IAirportFactory airportFactory)
+        public AirportService(IUsitData usitData)
         {
             if (usitData == null)
             {
                 throw new NullReferenceException("UsitData");
             }
 
-            if (airportFactory == null)
-            {
-                throw new NullReferenceException("AirportFactory");
-            }
-
             this.usitData = usitData;
-            this.airportFactory = airportFactory;
         }
 
         public IEnumerable<Airport> GetAllAirportsInCity(int cityId)
@@ -35,14 +28,6 @@ namespace UsitColours.Services
                     .Where(a => a.CityId == cityId)
                     .OrderBy(a => a.Name)
                     .ToList();
-        }
-
-        public void AddAirport(int cityId, string name)
-        {
-            Airport airport = this.airportFactory.CreateAirport(name, cityId);
-
-            this.usitData.Airports.Add(airport);
-            this.usitData.SaveChanges();
         }
 
         public void AddAirport(Airport airport)

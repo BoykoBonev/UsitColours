@@ -1,13 +1,16 @@
 ﻿using System;
 using AutoMapper;
 using UsitColours.AutoMapper;
-using UsitColours.Models;
 
-namespace UsitColours.Areas.Admin.Models
+namespace UsitColours.Models
 {
-    public class JobViewModel: IHaveCustomMappings
+    public class JobViewModel: IHaveCustomMappings, IMapFrom<Job>
     {
+        public int Id { get; set; }
+
         public int CityId { get; set; }
+
+        public string CityName { get; set; }
 
         public string JobTitle { get; set; }
 

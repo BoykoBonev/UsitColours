@@ -13,8 +13,9 @@ namespace UsitColours.Controllers
     {
         private readonly IFlightService flightService;
         private readonly IMappingService mappingService;
+        private readonly IJobService jobService;
 
-        public HomeController(IFlightService flightService, IMappingService mappingService)
+        public HomeController(IFlightService flightService, IMappingService mappingService, IJobService jobService)
         {
             if (flightService == null)
             {
@@ -26,6 +27,12 @@ namespace UsitColours.Controllers
                 throw new NullReferenceException("MappingService");
             }
 
+            if(jobService == null)
+            {
+                throw new NullReferenceException("JobService");
+            }
+
+            this.jobService = jobService;
             this.mappingService = mappingService;
             this.flightService = flightService;
         }
@@ -36,9 +43,14 @@ namespace UsitColours.Controllers
                 .Select(f => mappingService.Map<FlightVIewModel>(f))
                 .ToList();
 
+            var soonestJobs = this.jobService.GetSoonestJobs()
+                .Select(j => mappingService.Map<JobViewModel>(j))
+                .ToList();
+
             var viewModel = new HomeViewModel()
             {
-                Flights = cheapestFlights
+                Flights = cheapestFlights,
+                Jobs = soonestJobs
             };
 
             return View(viewModel);

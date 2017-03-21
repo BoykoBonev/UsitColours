@@ -26,7 +26,7 @@
                             {
                                 <tr>
                                     <td>    
-                                    @Html.ActionLink("Info", "Details", "Flight", new { id = @flight.Id }, null) </td>
+                                    @Html.ActionLink("Info", "Details", "Flight", new { id = @flight.Id }, new {@class = "btn btn-success"}) </td>
                                     <td> @flight.AirportDepartureName</td>
                                     <td>@flight.AirportArrivalName</td>
                                     <td>@flight.DateOfDeparture.ToString("dd/MM/yyyy")</td>
@@ -47,7 +47,33 @@
             <p>
                 If you want to search for more please use the search button.
             </p>
-           
+            <h3>Starting soon</h3>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Position</th>
+                        <th>Starting</th>
+                        <th>City</th>
+                        <th>Wage per hour</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var job in Model.Jobs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Info", "Details", "Job", new { id = @job.Id }, new { @class = "btn btn-success" })
+                            </td>
+                            <td> @job.JobTitle</td>
+                            <td>@job.StartDate.ToString("dd/MM/yyyy")</td>
+                            <td>@job.CityName</td>
+                            <td>@job.Wage </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
             <p>
                 <a class="btn btn-default" href="/SearchJob">Search &raquo;</a>

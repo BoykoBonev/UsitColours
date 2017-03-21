@@ -56,7 +56,8 @@ namespace UsitColours.Services
 
             var jobs = this.usitData.Jobs.All.Where(j => j.StartDate > date && j.Slots > 0)
                 .OrderBy(j => j.StartDate)
-                .Take(take);
+                .Take(take)
+                .Include(j => j.City);
 
             return jobs.ToList();
         }

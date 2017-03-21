@@ -17,11 +17,9 @@ namespace UsitColours.Services
 
         private readonly IMappedClassFactory mappedFlightFactory;
 
-        private readonly IFlightFactory flightFactory;
-
         private readonly IUsitData usitData;
 
-        public FlightService(IMappedClassFactory mappedFlightFactory, IFlightFactory flightFactory, IUsitData usitData)
+        public FlightService(IMappedClassFactory mappedFlightFactory, IUsitData usitData)
         {
             if (usitData == null)
             {
@@ -34,14 +32,8 @@ namespace UsitColours.Services
                 throw new NullReferenceException("MappedFactory");
             }
 
-            if(flightFactory == null)
-            {
-                throw new NullReferenceException("FlightFactory");
-            }
-
             this.usitData = usitData;
             this.mappedFlightFactory = mappedFlightFactory;
-            this.flightFactory = flightFactory;
         }
 
         public IEnumerable<PresentationFlight> GetFlights(int currentAirportId, int destinationAirportId, DateTime travelDate, int count)
@@ -197,14 +189,6 @@ namespace UsitColours.Services
             var flight = this.usitData.Flights.GetById(id);
 
             return flight;
-        }
-
-        public void AddFlight(int airportArrivalId, int airportDepartureId, DateTime departureDate, DateTime arrivalDate, decimal price, int airlineId, int availableSeats)
-        {
-            Flight flight = this.flightFactory.CreateFlight(airlineId, airportArrivalId, airportDepartureId, arrivalDate, departureDate, price, availableSeats);
-
-            this.usitData.Flights.Add(flight);
-            this.usitData.SaveChanges();
         }
 
         public void AddFlight(Flight flight)

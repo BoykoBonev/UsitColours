@@ -83,13 +83,21 @@ namespace UsitColours.Services
             return flights;
         }
 
-        public void AttachJobToUser(string userId, Job job)
+        public bool AttachJobToUser(string userId, int jobId)
         {
             var currentUser = this.usitData.Users.GetById(userId);
+
+            var job = this.usitData.Jobs.GetById(jobId);
+
+            if(currentUser.Money < job.Price)
+            {
+                return false;
+            }
 
             currentUser.Jobs.Add(job);
             this.usitData.Users.Update(currentUser);
             this.usitData.SaveChanges();
+            return true;
         }
 
         public IEnumerable<Job> GetUpcommingJobs(string userId)

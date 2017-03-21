@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using UsitColours.AutoMapper;
 using UsitColours.Models;
@@ -9,14 +6,15 @@ using UsitColours.Services.Contracts;
 
 namespace UsitColours.Controllers
 {
-    public class JobController : Controller
+    public class JobController : BaseController
     {
         private readonly IMappingService mappingService;
         private readonly IJobService jobService;
+        private readonly IUserService userService;
 
-        public JobController(IMappingService mappingService, IJobService jobService)
+        public JobController(IMappingService mappingService, IJobService jobService, IUserService userService)
         {
-            if(mappingService == null)
+            if (mappingService == null)
             {
                 throw new NullReferenceException("MappingService");
             }
@@ -25,8 +23,15 @@ namespace UsitColours.Controllers
             {
                 throw new NullReferenceException("JobService");
             }
+
+            if (userService == null)
+            {
+                throw new NullReferenceException("UserService");
+            }
+
             this.mappingService = mappingService;
             this.jobService = jobService;
+            this.userService = userService;
         }
 
         public ActionResult Details(int? id)
@@ -42,6 +47,33 @@ namespace UsitColours.Controllers
 
             return View(mappedJob);
         }
+
+        [Authorize]
+        public ActionResult Buy(int jobId)
+        {
+            var userId = base.GetLoggedUserId;
+
+            bool hasEnoughMoney = this.userService.AttachJobToUser(userId, jobId);
+
+            if (hasEnoughMoney)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // TODO- Message for fail transaction
+                return View("Index");
+            }
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+
+
+
 
     }
 }

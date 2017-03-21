@@ -271,6 +271,7 @@
     <Compile Include="Models\FlightVIewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SearchJobViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -353,6 +354,7 @@
     <Content Include="Views\Shared\_FlightSearchResult.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Job\Details.cshtml" />
+    <Content Include="Views\Job\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

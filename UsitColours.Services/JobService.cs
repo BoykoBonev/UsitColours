@@ -6,6 +6,7 @@ using UsitColours.Data.Contracts;
 using UsitColours.Models;
 using UsitColours.Services.Contracts;
 using UsitColours.Services.Contracts.Factories;
+using UsitColours.Services.Models;
 using UsitColours.Services.Utils;
 
 namespace UsitColours.Services
@@ -35,13 +36,43 @@ namespace UsitColours.Services
             return this.usitData.Jobs.All.ToList();
         }
 
-        public IEnumerable<Job> GetAllJobsFromByTerm(string searchedTerm)
+        public JobSearchResult GetAllJobsFromByTerm(string searchedTerm, int page)
         {
-            return this.usitData.Jobs.All
+            int count = this.usitData.Jobs.All
+                .Where(j => j.JobTitle.Contains(searchedTerm) || j.JobDescription.Contains(searchedTerm) || j.CompanyName.Contains(searchedTerm))
+                .Count();
+
+            int pageSize = 4;
+
+            if (count % pageSize > 0)
+            {
+                count = count / pageSize + 1;
+            }
+            else
+            {
+                count = count / pageSize;
+            }
+            int skip = 0;
+            if (page > 0)
+            {
+                page = (page - 1) * pageSize;
+            }
+
+            var jobs = this.usitData.Jobs.All
                 .Where(j => j.JobTitle.Contains(searchedTerm) || j.JobDescription.Contains(searchedTerm) || j.CompanyName.Contains(searchedTerm))
                 .OrderBy(j => j.JobTitle)
                 .Include(j => j.City)
+                .Skip(skip)
+                .Take(pageSize)
                 .ToList();
+
+            JobSearchResult result = new JobSearchResult()
+            {
+                Jobs = jobs,
+                Count = count
+            };
+
+            return result;
         }
 
         public Job GetJobById(int id)

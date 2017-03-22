@@ -1,0 +1,23 @@
+﻿@model UsitColours.Models.JobBaseViewModel
+<div class="well" style="float: left; margin-left: 50px; margin-top: 10px; width: 500px;">
+    <div class="col-md-4">
+        <h3>@Model.JobTitle</h3>
+        <p>
+            @Html.ActionLink("Click", "Details", "Job", new {id = Model.Id }, null)
+            for more details.
+        </p>
+        Wage:
+        <span>@Model.Wage</span></p>
+
+        Price:
+        <span>@Model.Price</span></p>
+
+        City:
+        <span>@Model.CityName</span>
+
+    </div>
+    <div class="col-md-8">
+        <img src="@Model.ImagePath" alt="Job" style="width: 300px; height: 150px; border-radius: 4px;" />
+    </div>
+
+</div>

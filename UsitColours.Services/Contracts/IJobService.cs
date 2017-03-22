@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UsitColours.Models;
+using UsitColours.Services.Models;
 
 namespace UsitColours.Services.Contracts
 {
@@ -10,7 +11,7 @@ namespace UsitColours.Services.Contracts
 
         IEnumerable<Job> GetAllJobs();
 
-        IEnumerable<Job> GetAllJobsFromByTerm(string searchedTerm);
+        JobSearchResult GetAllJobsFromByTerm(string searchedTerm, int page);
 
         Job GetJobById(int id);
 

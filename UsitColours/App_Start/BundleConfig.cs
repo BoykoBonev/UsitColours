@@ -27,11 +27,15 @@ namespace UsitColours
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/jobSearch").Include(
+                "~/Content/search-job.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/unobtrusive").Include(
               "~/Scripts/jquery.unobtrusive*"));
 
             bundles.Add(new StyleBundle("~/Content/admin/css").Include(
                       "~/Content/admin-menu.css"));
+
         }
     }
 }

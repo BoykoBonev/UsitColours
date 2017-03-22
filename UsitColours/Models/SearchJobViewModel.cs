@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace UsitColours.Models
 {
     public class SearchJobViewModel
     {
-        public string searchTerm { get; set; }
+        public int Count { get; set; }
 
-        public IEnumerable< MyProperty { get; set; }
+        public int page { get; set; }
+
+        public IEnumerable<JobBaseViewModel> Jobs { get; set; }
+
+        public string SearchTerm { get; set; }
     }
 }

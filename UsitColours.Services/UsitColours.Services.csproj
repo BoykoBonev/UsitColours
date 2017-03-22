@@ -80,6 +80,7 @@
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="JobService.cs" />
     <Compile Include="Models\FlightNode.cs" />
+    <Compile Include="Models\JobSearchResult.cs" />
     <Compile Include="Models\MappedFlight.cs" />
     <Compile Include="Models\PresentationFlight.cs" />
     <Compile Include="Models\SecondFlightNode.cs" />

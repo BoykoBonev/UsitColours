@@ -245,6 +245,7 @@
     <Compile Include="Areas\Admin\Models\AirportViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CountryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FlightModel.cs" />
+    <Compile Include="Models\JobBaseViewModel.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\IHaveCustomMappings.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Content\admin-menu.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\search-job.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -355,6 +357,8 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Job\Details.cshtml" />
     <Content Include="Views\Job\Search.cshtml" />
+    <Content Include="Views\Shared\_SearchJobResult.cshtml" />
+    <Content Include="Views\Job\_JobBase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -52,7 +52,7 @@ namespace UsitColours.Services
             {
                 count = count / pageSize;
             }
-            int skip = 0;
+            int skip = page * pageSize;
             if (page > 0)
             {
                 page = (page - 1) * pageSize;

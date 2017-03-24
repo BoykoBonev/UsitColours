@@ -1,22 +1,24 @@
 ﻿@model UsitColours.Models.SearchJobViewModel
 
 <h1>asddaads</h1>
-<div class="row">
-    @if (Model.Jobs.Count() > 0)
-    {
-        foreach (var job in Model.Jobs)
+@if (Model.Jobs.Count() > 0)
+{
+    <div class="row">
+
+        @foreach (var job in Model.Jobs)
         {
             @Html.Partial("_JobBase", job)
         }
 
-        <div class="row">
-            <div class="col-md-12 col-md-offset-4">
-                <ul class="pagination">
-                    @for (int i = 0; i < Model.Count; i++)
-                    {
+    </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-4">
+                    <ul class="pagination">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
 
-                        <li class="active">
-                            @Ajax.ActionLink(i.ToString(),
+                            <li class="active">
+                                @Ajax.ActionLink(i.ToString(),
                                    "SearchResult",
                                    "Job",
                    new { page = i, searchTerm = Model.SearchTerm },
@@ -25,17 +27,14 @@
                        UpdateTargetId = "JobResult",
                        InsertionMode = InsertionMode.Replace
                    })
-                        </li>
-                    }
-                    }
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-    }
-    else
-    {
-        <h2 class="center-align">No result found</h2>
-    }
+}
+else
+{
+    <h2 class="center-align">No result found</h2>
+}
 
-</div>

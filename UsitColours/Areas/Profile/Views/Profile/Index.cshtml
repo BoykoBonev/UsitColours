@@ -12,12 +12,12 @@
                     <ul class="nav">
                         <li>
                             @Ajax.ActionLink(
-                           "Add country", "AddCountry", "Admin", new AjaxOptions()
+                           "Flight History", "FlightHistory", "Profile", new AjaxOptions()
                            {
                                HttpMethod = "GET",
                                AllowCache = false,
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
+                               UpdateTargetId = "profile-content"
                            },
                            new
                            {
@@ -26,12 +26,12 @@
                         </li>
                         <li>
                             @Ajax.ActionLink(
-                           "Add city", "AddCity", "Admin", new AjaxOptions()
+                           "Upcomming Flights", "UpcommingFlights", "Profile", new AjaxOptions()
                            {
                                HttpMethod = "GET",
                                AllowCache = false,
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
+                               UpdateTargetId = "profile-content"
                            },
                            new
                            {
@@ -40,12 +40,12 @@
                         </li>
                         <li>
                             @Ajax.ActionLink(
-                           "Add airline", "AddAirline", "Admin", new AjaxOptions()
+                           "Job History", "JobHistory", "Profile", new AjaxOptions()
                            {
                                HttpMethod = "GET",
                                AllowCache = false,
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
+                               UpdateTargetId = "profile-content"
                            },
                            new
                            {
@@ -54,54 +54,25 @@
                         </li>
                         <li>
                             @Ajax.ActionLink(
-                           "Add airport", "AddAirport", "Admin", new AjaxOptions()
+                           "Upcomming Flights", "UpcommingFlights", "Profile", new AjaxOptions()
                            {
                                HttpMethod = "GET",
                                AllowCache = false,
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
+                               UpdateTargetId = "profile-content"
                            },
                            new
                            {
                                @class = "glyphicon glyphicon-plus"
                            })
                         </li>
-                        <li>
-                            @Ajax.ActionLink(
-                           "Add Flight", "AddFlight", "Admin", new AjaxOptions()
-                           {
-                               HttpMethod = "GET",
-                               AllowCache = false,
-                               InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
-                           },
-                           new
-                           {
-                               @class = "glyphicon glyphicon-plus"
-                           })
-                        </li>
-                        <li>
-                            @Ajax.ActionLink(
-                           "Add Job", "AddJob", "Admin", new AjaxOptions()
-                           {
-                               HttpMethod = "GET",
-                               AllowCache = false,
-                               InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = "admin-content"
-                           },
-                           new
-                           {
-                               @class="glyphicon glyphicon-plus"
-                           })
-                        </li>
-                        <li><a href="EditFlights.aspx"><i class="glyphicon glyphicon-plus"></i> Edit flight</a></li>
-                        <li><a href="TicketSales.aspx"><i class="glyphicon glyphicon-plus"></i> Ticket Sales</a></li>
+                        
                     </ul>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="content container-fluid">
-                    <div id="admin-content">
+                    <div id="profile-content">
                         <h1>Admin panel</h1>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ using UsitColours.Services.Contracts;
 
 namespace UsitColours.Controllers
 {
-    public class CommonController : Controller
+    public abstract class CommonController : Controller
     {
         private readonly ICityService cityService;
         private readonly IMappingService mappingService;
@@ -61,11 +61,10 @@ namespace UsitColours.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public JsonResult LoadCities(string countryId)
+        public JsonResult LoadCities(int countryId)
         {
-            int id = int.Parse(countryId);
-            var cities = this.cityService.GetCityInCountry(id)
-                 .AsQueryable()
+           // int id = int.Parse(countryId);
+            var cities = this.cityService.GetCityInCountry(countryId)
                 .Select(x => mappingService.Map<CityViewModel>(x))
                 .ToList();
 
@@ -79,12 +78,9 @@ namespace UsitColours.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public JsonResult LoadAirports(string cityId)
+        public JsonResult LoadAirports(int cityId)
         {
-            int id = int.Parse(cityId);
-
-            var airports = this.airportService.GetAllAirportsInCity(id)
-                 .AsQueryable()
+            var airports = this.airportService.GetAllAirportsInCity(cityId)
                 .Select(x => mappingService.Map<AirportViewModel>(x))
                 .ToList();
 
@@ -94,7 +90,7 @@ namespace UsitColours.Controllers
                 Value = m.Id.ToString()
             });
 
-            return Json(airports, JsonRequestBehavior.AllowGet);
+            return Json(airportsList, JsonRequestBehavior.AllowGet);
         }
     }
 }

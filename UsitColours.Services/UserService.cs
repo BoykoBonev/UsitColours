@@ -63,8 +63,11 @@ namespace UsitColours.Services
 
         public IEnumerable<Flight> GetFlightHistory(string userId)
         {
+            var currentDate = TimeProvider.Current.GetDate();
+
             var flights = this.usitData.Users.All.Where(u => u.Id == userId).SelectMany(p => p.Tickets)
                 .Select(t => t.Flight)
+                .Where(f => f.DateOfDeparture < currentDate)
                 .OrderBy(t => t.DateOfDeparture)
                 .ToList();
 

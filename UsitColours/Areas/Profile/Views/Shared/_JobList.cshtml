@@ -1,0 +1,39 @@
+﻿@model IEnumerable<UsitColours.Areas.Profile.Models.JobStatisticViewModel>
+
+<div class="row">
+    @if (Model.Count() > 0)
+            {
+                foreach (var job in Model)
+                {
+            <div class="row">
+                <div class="well" style="float: left; margin-left: 50px; margin-top: 10px; width: 1000px;">
+                    <div class="col-md-4">
+                        <h3>Start</h3>
+                        Date:
+                        <span>@job.StartDate</span><p />
+                        Company name:
+                        <span>@job.CompanyName </span><p />
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>End</h3>
+                        Date:
+                        <span>@job.EndDate</span><p />
+                        Title:
+                        <span>@job.JobTitle </span><p />
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Price</h3>
+                        <span>@job.Price</span><p />
+                        Wage:
+                        <span>@job.Wage</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h2>Nothing to show here :(</h2>
+    }
+</div>

@@ -122,6 +122,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -142,10 +146,6 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -245,6 +245,10 @@
     <Compile Include="Areas\Admin\Models\AirportViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CountryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FlightModel.cs" />
+    <Compile Include="Areas\Profile\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Profile\Models\FlightStatisticViewModel.cs" />
+    <Compile Include="Areas\Profile\Models\JobStatisticViewModel.cs" />
+    <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
     <Compile Include="Models\JobBaseViewModel.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
@@ -303,6 +307,12 @@
     <Content Include="Areas\Admin\Views\Shared\_AddAirport.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AddFlight.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AddJob.cshtml" />
+    <Content Include="Areas\Profile\Views\web.config" />
+    <Content Include="Areas\Profile\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Profile\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Profile\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Profile\Views\Shared\_FlightList.cshtml" />
+    <Content Include="Areas\Profile\Views\Shared\_JobList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

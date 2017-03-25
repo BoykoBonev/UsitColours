@@ -112,8 +112,16 @@
     <Compile Include="MVC\Controllers\CommonControllerTests\GetMappingService_Should.cs" />
     <Compile Include="MVC\Controllers\CommonControllerTests\LoadAirports_Should.cs" />
     <Compile Include="MVC\Controllers\CommonControllerTests\LoadCIties_Should.cs" />
+    <Compile Include="MVC\Controllers\FlightControllerTests\Constructor_Should.cs" />
+    <Compile Include="MVC\Controllers\FlightControllerTests\Details_Should.cs" />
+    <Compile Include="MVC\Controllers\FlightControllerTests\SearchPost_Should.cs" />
+    <Compile Include="MVC\Controllers\FlightControllerTests\Search_Should.cs" />
     <Compile Include="MVC\Controllers\HomeControllerTests\Constructor_Should.cs" />
     <Compile Include="MVC\Controllers\HomeControllerTests\Index_Should.cs" />
+    <Compile Include="MVC\Controllers\JobControllerTests\Constructor_Should.cs" />
+    <Compile Include="MVC\Controllers\JobControllerTests\Details_Should.cs" />
+    <Compile Include="MVC\Controllers\JobControllerTests\SearchResult_Should.cs" />
+    <Compile Include="MVC\Controllers\JobControllerTests\Search_Should.cs" />
     <Compile Include="MVC\Mocks\TestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AirlineServiceTests\AddAirline_Should.cs" />

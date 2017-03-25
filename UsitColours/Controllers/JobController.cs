@@ -41,6 +41,7 @@ namespace UsitColours.Controllers
             {
                 return View("Home");
             }
+
             int jobId = (int)id;
             var job = this.jobService.GetJobById(jobId);
 
@@ -92,10 +93,5 @@ namespace UsitColours.Controllers
 
             return PartialView("_SearchJobResult", searchViewModel);
         }
-
-
-
-
-
     }
 }

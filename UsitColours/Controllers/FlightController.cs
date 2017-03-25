@@ -36,6 +36,7 @@ namespace UsitColours.Controllers
             {
                 return View("Home");
             }
+
             int flightId = (int)id;
             var flight = this.flightService.GetDetailedFlight(flightId);
 

@@ -139,7 +139,6 @@ namespace UsitColours.Areas.Admin.Controllers
             return View("Index");
         }
 
-
         public ActionResult AddFlight()
         {
             var countries = this.countryServices.GetAllCountries()

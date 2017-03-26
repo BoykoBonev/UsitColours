@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
 using UsitColours.AutoMapper;
 using UsitColours.Controllers;
@@ -145,6 +146,19 @@ namespace UsitColours.Tests.MVC.Controllers.TicketControllerTests
             ticketController
                 .WithCallTo(t => t.Buy())
                 .ShouldRenderView("Index");
+        }
+
+        [Test]
+        public void HaveAuthorizeAttribute()
+        {
+            // Arrange
+            var method = typeof(TicketController).GetMethod(nameof(TicketController.Buy));
+
+            // Act
+            var hasAttr = method.GetCustomAttributes(typeof(AuthorizeAttribute), false).Any();
+
+            // Assert
+            Assert.IsTrue(hasAttr);
         }
     }
 }

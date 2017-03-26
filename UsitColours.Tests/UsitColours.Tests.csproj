@@ -110,6 +110,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddAirlineGet_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddAirlinePost_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddAirportGet_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddAirportPosh_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddCityGet_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddCityPost_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddCountryGet_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddCountryPost_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\AddFlightGet_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\Constructor_Should.cs" />
+    <Compile Include="MVC\Controllers\AdminControllerTests\Index_Should.cs" />
     <Compile Include="MVC\Controllers\CommonControllerTests\Constructor_Should.cs" />
     <Compile Include="MVC\Controllers\CommonControllerTests\GetAirportService_Should.cs" />
     <Compile Include="MVC\Controllers\CommonControllerTests\GetCityService_Should.cs" />
@@ -122,6 +133,7 @@
     <Compile Include="MVC\Controllers\FlightControllerTests\Search_Should.cs" />
     <Compile Include="MVC\Controllers\HomeControllerTests\Constructor_Should.cs" />
     <Compile Include="MVC\Controllers\HomeControllerTests\Index_Should.cs" />
+    <Compile Include="MVC\Controllers\JobControllerTests\Buy_Should.cs" />
     <Compile Include="MVC\Controllers\JobControllerTests\Constructor_Should.cs" />
     <Compile Include="MVC\Controllers\JobControllerTests\Details_Should.cs" />
     <Compile Include="MVC\Controllers\JobControllerTests\SearchResult_Should.cs" />

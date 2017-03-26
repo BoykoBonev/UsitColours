@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Antlr.Runtime.Misc;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
 namespace UsitColours.Controllers
 {
     public abstract class BaseController : Controller
     {
-        protected string GetLoggedUserId
+        public BaseController()
         {
-            get
-            {
-                return this.User?.Identity.GetUserId();
-            }
+            this.GetLoggedUserId = () => User.Identity.GetUserId();
         }
+
+        public virtual Func<string> GetLoggedUserId { get; set; }
     }
 }

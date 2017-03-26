@@ -38,7 +38,7 @@ namespace UsitColours.Areas.Profile.Controllers
 
         public ActionResult FlightHistory()
         {
-            var userId = base.GetLoggedUserId;
+            var userId = this.GetLoggedUserId();
 
             var flights = this.userService.GetFlightHistory(userId)
                 .Select(f => mappingService.Map<FlightStatisticViewModel>(f))
@@ -49,7 +49,7 @@ namespace UsitColours.Areas.Profile.Controllers
 
         public ActionResult UpcommingFlights()
         {
-            var userId = base.GetLoggedUserId;
+            var userId = this.GetLoggedUserId();
             var flights = this.userService.GetUpcommingFlights(userId)
                  .Select(f => mappingService.Map<FlightStatisticViewModel>(f))
                 .ToList();
@@ -60,7 +60,7 @@ namespace UsitColours.Areas.Profile.Controllers
 
         public ActionResult JobHistory()
         {
-            var userId = base.GetLoggedUserId;
+            var userId = this.GetLoggedUserId();
             var jobs = this.userService.GetJobsHistory(userId)
                  .Select(f => mappingService.Map<JobStatisticViewModel>(f))
                 .ToList();
@@ -71,7 +71,7 @@ namespace UsitColours.Areas.Profile.Controllers
 
         public ActionResult UpcommingJobs()
         {
-            var userId = base.GetLoggedUserId;
+            var userId = this.GetLoggedUserId();
             var jobs = this.userService.GetUpcommingJobs(userId)
                 .Select(f => mappingService.Map<JobStatisticViewModel>(f))
                 .ToList();

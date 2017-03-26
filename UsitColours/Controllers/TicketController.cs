@@ -41,7 +41,7 @@ namespace UsitColours.Controllers
         [Authorize]
         public ActionResult Buy()
         {
-            string currentUserId = User.Identity.GetUserId();
+            string currentUserId = this.GetLoggedUserId();
 
             var flights = (IEnumerable<DetailsFlightViewModel>)this.TempData["Ticket"];
 

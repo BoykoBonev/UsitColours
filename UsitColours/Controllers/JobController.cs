@@ -53,7 +53,7 @@ namespace UsitColours.Controllers
         [Authorize]
         public ActionResult Buy(int jobId)
         {
-            var userId = base.GetLoggedUserId;
+            string userId = this.GetLoggedUserId();
 
             bool hasEnoughMoney = this.userService.AttachJobToUser(userId, jobId);
 

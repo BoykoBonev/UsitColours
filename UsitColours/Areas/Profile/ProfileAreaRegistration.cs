@@ -14,6 +14,8 @@ namespace UsitColours.Areas.Profile
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            context.Routes.LowercaseUrls = true;
+
             context.MapRoute(
                 "Profile_default",
                 "Profile/{controller}/{action}/{id}",

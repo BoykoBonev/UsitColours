@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
+using System;
 using TestStack.FluentMVCTesting;
 using UsitColours.Areas.Admin.Controllers;
 using UsitColours.Areas.Admin.Models;
@@ -11,10 +11,10 @@ using UsitColours.Services.Contracts;
 namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
 {
     [TestFixture]
-    public class AddFlightGet_Should
+    public class AddFlightPost_Should
     {
         [Test]
-        public void CallGetAllCountries_OnCountryService()
+        public void RenderDefaultViewWIthExpectedFlight_WhenModelStateIsInvalid()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -26,15 +26,18 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
             var jobService = new Mock<IJobService>();
             var adminController = new AdminController(countryService.Object, mappingService.Object, cityService.Object, airlineService.Object, airportService.Object, flightService.Object, jobService.Object);
 
-            // Act
-            adminController.AddFlight();
+            adminController.ModelState.AddModelError(string.Empty, new Exception());
 
-            // Assert
-            countryService.Verify(c => c.GetAllCountries(), Times.Once);
+            var flight = new FlightModel();
+
+            // Act and Assert
+            adminController.WithCallTo(a => a.AddFlight(flight))
+                .ShouldRenderDefaultView()
+                .WithModel<FlightModel>(m => Assert.AreEqual(flight, m));
         }
 
         [Test]
-        public void CallGetAllAirlinesOnAirlineService()
+        public void CallMapOnMappingServiceWithExpectedFlight()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -46,15 +49,17 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
             var jobService = new Mock<IJobService>();
             var adminController = new AdminController(countryService.Object, mappingService.Object, cityService.Object, airlineService.Object, airportService.Object, flightService.Object, jobService.Object);
 
+            var flight = new FlightModel();
+
             // Act
-            adminController.AddFlight();
+            adminController.AddFlight(flight);
 
             // Assert
-            airlineService.Verify(a => a.GetAllAirlines(), Times.Once);
+            mappingService.Verify(m => m.Map<Flight>(flight), Times.Once);
         }
 
         [Test]
-        public void Render_AddFlightPartialViewWithExpectedViewModel()
+        public void CallAddFlightOnFlightServiceWIthExpectedFlight()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -66,31 +71,40 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
             var jobService = new Mock<IJobService>();
             var adminController = new AdminController(countryService.Object, mappingService.Object, cityService.Object, airlineService.Object, airportService.Object, flightService.Object, jobService.Object);
 
-            var countries = new List<Country>()
-            {
-                new Country() {Id = 1, Name = "First"},
-                new Country() {Id = 2, Name = "Second" },
-                new Country() {Id = 3, Name = "Third" }
-            };
+            var flight = new FlightModel();
 
-            countryService.Setup(c => c.GetAllCountries()).Returns(countries);
+            var expectedFlight = new Flight() { Id = 1 };
+            mappingService.Setup(m => m.Map<Flight>(flight)).Returns(expectedFlight);
 
-            var airlines = new List<Airline>()
-            {
-                new Airline() {Id = 1, Name = "First"},
-                new Airline() {Id = 2, Name = "Second" },
-                new Airline() {Id = 3, Name = "Third" }
-            };
+            // Act
+            adminController.AddFlight(flight);
 
-            airlineService.Setup(c => c.GetAllAirlines()).Returns(airlines);
+            // Assert
+            flightService.Verify(f => f.AddFlight(expectedFlight), Times.Once);
+        }
 
-            adminController.WithCallTo(f => f.AddFlight())
-               .ShouldRenderPartialView("_AddFlight")
-               .WithModel<AddFlightViewModel>(m =>
-               {
-                   Assert.AreEqual(countries.Count, m.Countries.Count);
-                   Assert.AreEqual(airlines.Count, m.Airlines.Count);
-               });
+        [Test]
+        public void RenderIndexView_WhenEverythingIsDone()
+        {
+            // Arrange
+            var countryService = new Mock<ICountryService>();
+            var airlineService = new Mock<IAirlineService>();
+            var flightService = new Mock<IFlightService>();
+            var mappingService = new Mock<IMappingService>();
+            var cityService = new Mock<ICityService>();
+            var airportService = new Mock<IAirportService>();
+            var jobService = new Mock<IJobService>();
+            var adminController = new AdminController(countryService.Object, mappingService.Object, cityService.Object, airlineService.Object, airportService.Object, flightService.Object, jobService.Object);
+
+            var flight = new FlightModel();
+
+            var expectedFlight = new Flight() { Id = 1 };
+            mappingService.Setup(m => m.Map<Flight>(flight)).Returns(expectedFlight);
+            flightService.Setup(f => f.AddFlight(expectedFlight)).Verifiable();
+
+            // Act and Assert
+            adminController.WithCallTo(a => a.AddFlight(flight))
+                .ShouldRenderView("Index");
         }
     }
 }

@@ -10,6 +10,7 @@ using UsitColours.Services.Contracts;
 
 namespace UsitColours.Areas.Profile.Controllers
 {
+    [Authorize]
     public class ProfileController : BaseController
     {
         private readonly IMappingService mappingService;
@@ -17,12 +18,12 @@ namespace UsitColours.Areas.Profile.Controllers
 
         public ProfileController(IMappingService mappingService, IUserService userService)
         {
-            if(mappingService == null)
+            if (mappingService == null)
             {
                 throw new NullReferenceException("MappingService");
             }
 
-            if(userService == null)
+            if (userService == null)
             {
                 throw new NullReferenceException("UserService");
             }
@@ -30,7 +31,7 @@ namespace UsitColours.Areas.Profile.Controllers
             this.userService = userService;
             this.mappingService = mappingService;
         }
-        // GET: Profile/Profile
+
         public ActionResult Index()
         {
             return View();

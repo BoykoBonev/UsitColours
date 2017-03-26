@@ -10,6 +10,8 @@ using UsitColours.Services.Contracts;
 
 namespace UsitColours.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class AdminController : CommonController
     {
         private readonly ICountryService countryServices;
@@ -142,12 +144,10 @@ namespace UsitColours.Areas.Admin.Controllers
         public ActionResult AddFlight()
         {
             var countries = this.countryServices.GetAllCountries()
-              .AsQueryable()
               .Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() })
               .ToList();
 
             var airlines = this.airlineService.GetAllAirlines()
-                .AsQueryable()
               .Select(a => new SelectListItem() { Text = a.Name, Value = a.Id.ToString() })
               .ToList();
 
@@ -198,6 +198,7 @@ namespace UsitColours.Areas.Admin.Controllers
             {
                 return this.View(job);
             }
+
             string path = string.Empty;
             if (job.IsDefaultImage)
             {

@@ -7,7 +7,7 @@ namespace UsitColours.Services.Contracts
 {
     public interface IFlightService
     {
-        IEnumerable<Flight> FilterFlights(string type, string filterExpression);
+      //  IEnumerable<Flight> FilterFlights(string type, string filterExpression);
 
         IEnumerable<Flight> GetCheapestFlights();
 
@@ -15,7 +15,7 @@ namespace UsitColours.Services.Contracts
 
         IEnumerable<PresentationFlight> GetFlights(int currentAirportId, int destinationAirportId, DateTime travelDate, int count);
 
-        void UpdateFlight(Flight flight);
+     //   void UpdateFlight(Flight flight);
 
         void AddFlight(Flight flight);
 

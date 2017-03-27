@@ -110,6 +110,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AirlineTests.cs" />
+    <Compile Include="Models\AirportTests.cs" />
+    <Compile Include="Models\CityTests.cs" />
+    <Compile Include="Models\CountryTests.cs" />
+    <Compile Include="Models\FlightTests.cs" />
+    <Compile Include="Models\JobTests.cs" />
     <Compile Include="MVC\Controllers\AdminControllerTests\AddAirlineGet_Should.cs" />
     <Compile Include="MVC\Controllers\AdminControllerTests\AddAirlinePost_Should.cs" />
     <Compile Include="MVC\Controllers\AdminControllerTests\AddAirportGet_Should.cs" />

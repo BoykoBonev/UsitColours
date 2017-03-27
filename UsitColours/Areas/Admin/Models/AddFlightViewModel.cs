@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using UsitColours.AutoMapper;
 using UsitColours.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace UsitColours.Areas.Admin.Models
 {
@@ -16,7 +17,6 @@ namespace UsitColours.Areas.Admin.Models
         public int AirportArrivalId { get; set; }
 
         public int AirportDepartureId { get; set; }
-
 
         public int AirlineId { get; set; }
 

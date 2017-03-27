@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using UsitColours.Models.Constants;
 
 namespace UsitColours.Models
 {
@@ -22,6 +24,8 @@ namespace UsitColours.Models
 
         public int Id { get; set; }
 
+        [MinLength(ModelConstants.AirportMinLength)]
+        [MaxLength(ModelConstants.AirportMaxLength)]
         public string Name { get; set; }
 
         public int CityId { get; set; }

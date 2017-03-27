@@ -17,6 +17,7 @@ namespace UsitColours.App_Start
     using Data.Contracts;
     using Data;
     using AutoMapper;
+    using Common;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -86,6 +87,11 @@ namespace UsitColours.App_Start
             kernel.Bind<IJobService>().To<JobService>().InRequestScope();
             kernel.Bind<ITicketService>().To<TicketService>().InRequestScope();
             kernel.Bind<IUserService>().To<UserService>().InRequestScope();
+            kernel.Bind<ICacheProvider>().To<CacheProvider>().InRequestScope();
+
+            kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InRequestScope();
+
+
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿@model  UsitColours.Areas.Admin.Models.AddAirportViewModel
 
-
-<h2>AddCity</h2>
-
+<h2>Add Airport</h2>
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
         <h4>Add country</h4>
         <hr />
@@ -15,7 +15,6 @@
             @Html.DropDownList("Countries", Model.Countries, new { id = "countriesList" });
         </div>
         <div class="form-control">
-
 
             @Html.DropDownListFor(m => m.CityId, new SelectList(Enumerable.Empty<SelectListItem>()),
             "Select City", new { id = "cityList" });

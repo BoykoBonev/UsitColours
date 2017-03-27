@@ -59,6 +59,7 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddCountry(string name)
         {
             this.countryServices.AddCountry(name);
@@ -83,6 +84,7 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddCity(CityViewModel cityViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -104,6 +106,7 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddAirline(string name)
         {
             this.airlineService.AddAirline(name);
@@ -128,6 +131,7 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddAirport(AirportViewModel airport)
         {
             if (!this.ModelState.IsValid)
@@ -161,12 +165,18 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddFlight(FlightModel flight)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(flight);
-            }
+            //if (!this.ModelState.IsValid)
+            //{
+            //    var viewModel = new AddFlightViewModel()
+            //    {
+            //        FlightModel = flight
+            //    };
+
+            //    return PartialView("_AddFlight", viewModel);
+            //}
 
             var flightModel = base.MappingService.Map<Flight>(flight);
 
@@ -192,6 +202,7 @@ namespace UsitColours.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddJob(JobViewModel job, HttpPostedFileBase file)
         {
             if (!this.ModelState.IsValid)
@@ -216,14 +227,11 @@ namespace UsitColours.Areas.Admin.Controllers
 
             job.ImagePath = path;
 
-
             var jobModel = base.MappingService.Map<Job>(job);
 
             this.jobService.AddJob(jobModel);
 
             return View("Index");
         }
-
-
     }
 }

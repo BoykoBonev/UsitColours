@@ -249,6 +249,9 @@
     <Compile Include="Areas\Profile\Models\FlightStatisticViewModel.cs" />
     <Compile Include="Areas\Profile\Models\JobStatisticViewModel.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
+    <Compile Include="Common\CacheProvider.cs" />
+    <Compile Include="Common\ICacheProvider.cs" />
+    <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Models\JobBaseViewModel.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />

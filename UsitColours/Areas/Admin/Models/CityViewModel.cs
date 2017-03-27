@@ -3,6 +3,7 @@ using AutoMapper;
 using UsitColours.AutoMapper;
 using UsitColours.Models;
 using System.ComponentModel.DataAnnotations;
+using UsitColours.Constants;
 
 namespace UsitColours.Areas.Admin.Models
 {
@@ -11,10 +12,11 @@ namespace UsitColours.Areas.Admin.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(60, ErrorMessage ="The {0} must be at least {1} characters long", MinimumLength = 2)]
+        [StringLength(GlobalConstants.CityMaxLength, ErrorMessage ="The {0} must be at least {1} characters long", MinimumLength = GlobalConstants.CityMinLength)]
         [Display(Name ="City name")]
         public string Name { get; set; }
 
+        [Required]
         public int CountryId { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)

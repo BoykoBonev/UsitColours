@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using UsitColours.Models.Constants;
 
 namespace UsitColours.Models
 {
@@ -31,8 +32,12 @@ namespace UsitColours.Models
 
         public int Id { get; set; }
 
+        [MinLength(ModelConstants.JobTitleMinLength)]
+        [MaxLength(ModelConstants.JobTitleMaxLength)]
         public string JobTitle { get; set; }
 
+        [MinLength(ModelConstants.JobDescriptionMinLength)]
+        [MaxLength(ModelConstants.JobDescriptionMaxLength)]
         public string JobDescription { get; set; }
 
         public int Slots { get; set; }
@@ -43,6 +48,8 @@ namespace UsitColours.Models
 
         public decimal Wage { get; set; }
 
+        [MinLength(ModelConstants.CompanyMinLength)]
+        [MaxLength(ModelConstants.CompanyMaxLength)]
         public string CompanyName { get; set; }
 
         [Required]

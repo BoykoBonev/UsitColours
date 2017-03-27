@@ -2,9 +2,13 @@
 
 @using (Html.BeginForm("AddJob", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
     <div class="container">
         @Html.LabelFor(m => m.JobDescription, "Job description")
         @Html.TextAreaFor(m => m.JobDescription)
+        @Html.ValidationMessageFor(m => m.JobDescription)
     </div>
     <div class="container">
         <div class="form-inline">
@@ -13,6 +17,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.JobTitle, "Job title")
                         @Html.EditorFor(m => m.JobTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.JobTitle)
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -55,6 +60,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.CompanyName, "CompanyName")
                         @Html.EditorFor(m => m.CompanyName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CompanyName)
                     </div>
                 </div>
                 <div class="col-md-6">

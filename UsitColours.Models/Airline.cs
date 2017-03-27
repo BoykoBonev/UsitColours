@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using UsitColours.Models.Constants;
 
 namespace UsitColours.Models
 {
@@ -22,6 +23,8 @@ namespace UsitColours.Models
 
         public int Id { get; set; }
 
+        [MinLength(ModelConstants.AirlineMinLength)]
+        [MaxLength(ModelConstants.AirlineMaxLength)]
         public string Name { get; set; }
 
         public virtual ICollection<City> Cities

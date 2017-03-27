@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TestStack.FluentMVCTesting;
 using UsitColours.AutoMapper;
+using UsitColours.Common;
+using UsitColours.Constants;
 using UsitColours.Controllers;
 using UsitColours.Models;
 using UsitColours.Services.Contracts;
@@ -14,13 +16,14 @@ namespace UsitColours.Tests.MVC.Controllers.HomeControllerTests
     public class Index_Should
     {
         [Test]
-        public void Call()
+        public void RenderDefaultViewWithExpectedViewModel_WhenThereIsNoCache()
         {
             // Arrange
             var mappingService = new Mock<IMappingService>();
             var flightService = new Mock<IFlightService>();
             var jobService = new Mock<IJobService>();
-            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object);
+            var cacheProvider = new Mock<ICacheProvider>();
+            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object, cacheProvider.Object);
 
             var flightVIewModel = new FlightVIewModel()
             {
@@ -67,13 +70,15 @@ namespace UsitColours.Tests.MVC.Controllers.HomeControllerTests
         }
 
         [Test]
-        public void CallGetCheapestFlightsOnce()
+        public void CallGetCheapestFlightsOnce_WhenThereIsNoCache()
         {
             // Arrange
             var mappingService = new Mock<IMappingService>();
             var flightService = new Mock<IFlightService>();
             var jobService = new Mock<IJobService>();
-            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object);
+            var cacheProvider = new Mock<ICacheProvider>();
+
+            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object, cacheProvider.Object);
 
             // Act
             homeController.Index();
@@ -83,13 +88,15 @@ namespace UsitColours.Tests.MVC.Controllers.HomeControllerTests
         }
 
         [Test]
-        public void CallGetSoonestJobsOnce()
+        public void CallGetSoonestJobsOnce_WhenThereIsNoCache()
         {
             // Arrange
             var mappingService = new Mock<IMappingService>();
             var flightService = new Mock<IFlightService>();
             var jobService = new Mock<IJobService>();
-            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object);
+            var cacheProvider = new Mock<ICacheProvider>();
+
+            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object, cacheProvider.Object);
 
             // Act
             homeController.Index();
@@ -98,8 +105,39 @@ namespace UsitColours.Tests.MVC.Controllers.HomeControllerTests
             jobService.Verify(j => j.GetSoonestJobs(), Times.Once);
         }
 
+        [Test]
+        public void ReturnDefaultViewWIthViewModelFromCache_WhenCacheProviderReturnValue()
+        {
+            // Arrange
+            var mappingService = new Mock<IMappingService>();
+            var flightService = new Mock<IFlightService>();
+            var jobService = new Mock<IJobService>();
+            var cacheProvider = new Mock<ICacheProvider>();
 
+            var homeController = new HomeController(flightService.Object, mappingService.Object, jobService.Object, cacheProvider.Object);
 
+            var homeViewModel = new HomeViewModel()
+            {
+                Flights = new List<FlightVIewModel>()
+                 {
+                     new FlightVIewModel() {Id = 1 }
+                 },
+                Jobs = new List<JobViewModel>()
+                 {
+                     new JobViewModel() {Id = 1 }
+                 }
+            };
 
+            cacheProvider.Setup(c => c.GetValue(GlobalConstants.HomeCache)).Returns(homeViewModel);
+
+            // Act and Assert
+            homeController
+               .WithCallTo(h => h.Index())
+               .ShouldRenderDefaultView()
+             .WithModel<HomeViewModel>(viewModel =>
+             {
+                 Assert.AreEqual(homeViewModel, viewModel);
+             });
+        }
     }
 }

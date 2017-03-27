@@ -110,6 +110,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\EfGenericRepositoryTests\Constructor_Should.cs" />
+    <Compile Include="Data\EfGenericRepositoryTests\GetById_Should.cs" />
+    <Compile Include="Data\Mocks\Dummy.cs" />
+    <Compile Include="Data\Mocks\EfRepositoryMock.cs" />
+    <Compile Include="Data\Mocks\QueryableDbSetMock.cs" />
     <Compile Include="Data\UsitDataTests\Airlines_Should.cs" />
     <Compile Include="Data\UsitDataTests\Airport_Should.cs" />
     <Compile Include="Data\UsitDataTests\Cities_Should.cs" />

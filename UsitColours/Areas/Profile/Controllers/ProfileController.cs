@@ -67,7 +67,6 @@ namespace UsitColours.Areas.Profile.Controllers
                 .ToList();
 
             return PartialView("_JobList", jobs);
-
         }
 
         public ActionResult UpcommingJobs()
@@ -79,6 +78,5 @@ namespace UsitColours.Areas.Profile.Controllers
 
             return PartialView("_JobList", jobs);
         }
-
     }
 }

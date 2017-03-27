@@ -130,49 +130,49 @@ namespace UsitColours.Services
             return resultFlights;
         }
 
-        public IEnumerable<Flight> FilterFlights(string type, string filterExpression)
-        {
-            IEnumerable<Flight> resultQuery = null;
+        //public IEnumerable<Flight> FilterFlights(string type, string filterExpression)
+        //{
+        //    IEnumerable<Flight> resultQuery = null;
 
-            if (type == "date")
-            {
-                DateTime queryDate;
-                if(!DateTime.TryParse(filterExpression, out queryDate))
-                {
-                    return null;
-                }
+        //    if (type == "date")
+        //    {
+        //        DateTime queryDate;
+        //        if(!DateTime.TryParse(filterExpression, out queryDate))
+        //        {
+        //            return null;
+        //        }
 
-                var lowerBound = queryDate.AddDays(-1);
-                var upperBound = queryDate.AddDays(1);
+        //        var lowerBound = queryDate.AddDays(-1);
+        //        var upperBound = queryDate.AddDays(1);
 
-                resultQuery = this.usitData.Flights.All
-                    .Where(x => lowerBound <= x.DateOfDeparture && x.DateOfDeparture <= upperBound)
-                    .OrderBy(x => x.DateOfDeparture)
-                    .ToList();
-            }
-            else if (type == "airline")
-            {
-                resultQuery = this.usitData.Flights.All
-                    .Include(x => x.Airline).Where(x => x.Airline.Name == filterExpression)
-                    .OrderBy(x => x.DateOfDeparture)
-                    .ToList();
-            }
-            else if (type == "airport")
-            {
-                resultQuery = this.usitData.Flights.All.Include(x => x.AirportArrival)
-                    .Include(x => x.AirportDeparture).Where(x => x.AirportDeparture.Name == filterExpression || x.AirportArrival.Name == filterExpression)
-                    .OrderBy(x => x.DateOfDeparture)
-                    .ToList();
-            }
+        //        resultQuery = this.usitData.Flights.All
+        //            .Where(x => lowerBound <= x.DateOfDeparture && x.DateOfDeparture <= upperBound)
+        //            .OrderBy(x => x.DateOfDeparture)
+        //            .ToList();
+        //    }
+        //    else if (type == "airline")
+        //    {
+        //        resultQuery = this.usitData.Flights.All
+        //            .Include(x => x.Airline).Where(x => x.Airline.Name == filterExpression)
+        //            .OrderBy(x => x.DateOfDeparture)
+        //            .ToList();
+        //    }
+        //    else if (type == "airport")
+        //    {
+        //        resultQuery = this.usitData.Flights.All.Include(x => x.AirportArrival)
+        //            .Include(x => x.AirportDeparture).Where(x => x.AirportDeparture.Name == filterExpression || x.AirportArrival.Name == filterExpression)
+        //            .OrderBy(x => x.DateOfDeparture)
+        //            .ToList();
+        //    }
 
-            return resultQuery;
-        }
+        //    return resultQuery;
+        //}
 
-        public void UpdateFlight(Flight flight)
-        {
-            this.usitData.Flights.Update(flight);
-            this.usitData.SaveChanges();
-        }
+        //public void UpdateFlight(Flight flight)
+        //{
+        //    this.usitData.Flights.Update(flight);
+        //    this.usitData.SaveChanges();
+        //}
 
         public IEnumerable<Flight> GetCheapestFlights()
         {

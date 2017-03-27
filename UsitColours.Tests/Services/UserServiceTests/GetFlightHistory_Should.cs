@@ -8,6 +8,7 @@ using UsitColours.Data.Repositories;
 using UsitColours.Models;
 using UsitColours.Services;
 using UsitColours.Services.Contracts.Factories;
+using UsitColours.Services.Utils;
 
 namespace UsitColours.Tests.Services.UserServiceTests
 {
@@ -28,6 +29,13 @@ namespace UsitColours.Tests.Services.UserServiceTests
             var secondDateOfDeparture = new DateTime(2016, 10, 10, 11, 5, 5, 3);
             var thirdDateOfDeparture = new DateTime(2016, 10, 10, 12, 5, 5, 3);
             string userId = "GuidGuid";
+
+            var mockedDate = new DateTime(2016, 10, 10, 10, 5, 5, 3);
+            var timeProvider = new Mock<TimeProvider>();
+
+            timeProvider.Setup(x => x.GetDate()).Returns(mockedDate);
+            TimeProvider.Current = timeProvider.Object;
+
 
             var ticketCollection = new List<Ticket>()
             {
@@ -80,7 +88,9 @@ namespace UsitColours.Tests.Services.UserServiceTests
                 .Where(u => u.Id == userId)
                 .SelectMany(p => p.Tickets)
                 .Select(t => t.Flight)
-                .OrderBy(t => t.DateOfDeparture);
+                .Where(f => f.DateOfDeparture < mockedDate)
+                .OrderBy(t => t.DateOfDeparture)
+                .ToList();
 
             // Act
             var actualCollection = userService.GetFlightHistory(userId);

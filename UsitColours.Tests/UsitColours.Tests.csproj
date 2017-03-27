@@ -162,6 +162,12 @@
     <Compile Include="MVC\Controllers\JobControllerTests\Details_Should.cs" />
     <Compile Include="MVC\Controllers\JobControllerTests\SearchResult_Should.cs" />
     <Compile Include="MVC\Controllers\JobControllerTests\Search_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\Constructor_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\FlightHistory_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\Index_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\JobHistory_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\UpcommingFlights_Should.cs" />
+    <Compile Include="MVC\Controllers\ProfileControllerTests\UpcommingJobs_Should.cs" />
     <Compile Include="MVC\Controllers\TicketControllerTests\Buy_Should.cs" />
     <Compile Include="MVC\Controllers\TicketControllerTests\Constructor_Should.cs" />
     <Compile Include="MVC\Controllers\TicketControllerTests\Index_Should.cs" />

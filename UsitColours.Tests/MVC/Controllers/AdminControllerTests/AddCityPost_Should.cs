@@ -39,11 +39,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
 
             // Act and Assert
             adminController.WithCallTo(a => a.AddCity(cityViewModel))
-                .ShouldRenderDefaultView()
-                .WithModel<CityViewModel>(m =>
-                {
-                    Assert.AreEqual(cityViewModel, m);
-                });
+                .ShouldRedirectTo(typeof(AdminController).GetMethod("Index"));
         }
 
         [Test]

@@ -14,7 +14,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
     public class AddFlightPost_Should
     {
         [Test]
-        public void RenderDefaultViewWIthExpectedFlight_WhenModelStateIsInvalid()
+        public void RedirectToIndexAction()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -32,8 +32,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
 
             // Act and Assert
             adminController.WithCallTo(a => a.AddFlight(flight))
-                .ShouldRenderDefaultView()
-                .WithModel<FlightModel>(m => Assert.AreEqual(flight, m));
+                .ShouldRedirectTo(typeof(AdminController).GetMethod("Index"));
         }
 
         [Test]

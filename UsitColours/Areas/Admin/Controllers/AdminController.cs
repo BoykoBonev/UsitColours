@@ -37,7 +37,7 @@ namespace UsitColours.Areas.Admin.Controllers
                 throw new NullReferenceException("FlightService");
             }
 
-            if(jobService == null)
+            if (jobService == null)
             {
                 throw new NullReferenceException("JobService");
             }
@@ -89,7 +89,7 @@ namespace UsitColours.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(cityViewModel);
+                return RedirectToAction(nameof(AdminController.Index));
             }
 
             City city = base.MappingService.Map<City>(cityViewModel);
@@ -136,7 +136,7 @@ namespace UsitColours.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(airport);
+                return RedirectToAction(nameof(AdminController.Index));
             }
 
             var airportModel = base.MappingService.Map<Airport>(airport);
@@ -158,7 +158,7 @@ namespace UsitColours.Areas.Admin.Controllers
             var viewModel = new AddFlightViewModel()
             {
                 Countries = countries,
-                Airlines =airlines
+                Airlines = airlines
             };
 
             return PartialView("_AddFlight", viewModel);
@@ -168,15 +168,10 @@ namespace UsitColours.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddFlight(FlightModel flight)
         {
-            //if (!this.ModelState.IsValid)
-            //{
-            //    var viewModel = new AddFlightViewModel()
-            //    {
-            //        FlightModel = flight
-            //    };
-
-            //    return PartialView("_AddFlight", viewModel);
-            //}
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(AdminController.Index));
+            }
 
             var flightModel = base.MappingService.Map<Flight>(flight);
 
@@ -207,7 +202,7 @@ namespace UsitColours.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(job);
+                return RedirectToAction(nameof(AdminController.Index));
             }
 
             string path = string.Empty;

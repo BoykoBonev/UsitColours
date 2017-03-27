@@ -18,7 +18,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
     public class AddJobPost_Should
     {
         [Test]
-        public void RenderDefaultViewWIthExpectedJob_WhenModelStateIsInvalid()
+        public void RedirectToIndexAction()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -37,8 +37,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
 
             // Act and Assert
             adminController.WithCallTo(a => a.AddJob(job, httpPostedFile.Object))
-                .ShouldRenderDefaultView()
-                .WithModel<JobViewModel>(m => Assert.AreEqual(job, m));
+               .ShouldRedirectTo(typeof(AdminController).GetMethod("Index"));
         }
 
 

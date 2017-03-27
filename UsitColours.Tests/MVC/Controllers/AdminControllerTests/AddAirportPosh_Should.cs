@@ -18,7 +18,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
     public class AddAirportPosh_Should
     {
         [Test]
-        public void Call()
+        public void RedirectToIndexActionWhenModelStateIsInvalid()
         {
             // Arrange
             var countryService = new Mock<ICountryService>();
@@ -39,11 +39,7 @@ namespace UsitColours.Tests.MVC.Controllers.AdminControllerTests
 
             // Act and Assert
             adminController.WithCallTo(a => a.AddAirport(expectedAirportVIewModel))
-                .ShouldRenderDefaultView()
-                .WithModel<AirportViewModel>(m =>
-                {
-                    Assert.AreEqual(expectedAirportVIewModel, m);
-                });
+                .ShouldRedirectTo(typeof(AdminController).GetMethod("Index"));
         }
 
         [Test]

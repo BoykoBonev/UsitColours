@@ -18,6 +18,8 @@
                         HttpMethod = "GET"
                     }))
                     {
+                        @Html.AntiForgeryToken()
+
                         <input type="text" name="searchTerm" class="flipkart-navbar-input col-xs-11" />
 
                         <input type="submit" value="Search" class="flipkart-navbar-button col-xs-1" />

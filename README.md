@@ -1,5 +1,8 @@
 # UsitColours
 ---
+[![Build status](https://ci.appveyor.com/api/projects/status/bck7yqwgakgi10c0?svg=true)](https://ci.appveyor.com/project/BoykoBonev/usitcolours)
+
+[![Coverage Status](https://coveralls.io/repos/github/BoykoBonev/UsitColours/badge.svg)](https://coveralls.io/github/BoykoBonev/UsitColours)
 
 ## Public pages
 ---

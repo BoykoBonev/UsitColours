@@ -73,8 +73,6 @@ namespace UsitColours.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult SearchResult(string searchTerm, int page = 0)
         {
 
